@@ -473,12 +473,17 @@ class Model_Profile extends Model
         $values_update = '';
         $archive_date = '';
         $varId = Helper::FilterVal('id');
+        $districtId = null;
 		if ($_POST) {
 			$link = strtolower(md5(uniqid(rand(),true)));
 			$date_last_edit = date('Y-m-d H:i:s');
 			$prem_count = Get_functions::Get_premium_balance();
 
 			foreach($_POST as $k => $v){
+			    if($k == 'dis' || $k =='sub_dis' || $k =='districtId'){
+			        continue;
+                }
+
 				$v = $k=="price" ? preg_replace('/\D/', '', $v) : $v;
 				if($k == 'text'){
 					$column.="`suspicion`, ";
@@ -500,6 +505,14 @@ class Model_Profile extends Model
 				$values.="'".$v."', ";
 				$values_update.="`".$k."`='".$v."', ";
 			}
+
+
+            $districtId = DB::Select('id','sub_districts',"`name` = '{$_POST['sub_dis']}' AND `district` = '{$_POST['dis']}'")[0];
+            if(isset($districtId['id'])){
+                $column.="`dis`, ";
+                $values.="'{$districtId['id']}', ";
+                $values_update.="`dis`='{$districtId['id']}', ";
+            }
 
 			$column.="`user_id`, `active`, `date_added`, `date_last_edit`, `link`";
 			$values.="'{$_SESSION['user']}', '1', '".date('Y-m-d')."', '{$date_last_edit}', '{$link}'";

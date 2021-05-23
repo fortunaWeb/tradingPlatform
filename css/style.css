@@ -695,7 +695,7 @@ div#user_id >button{
 	 text-align: left;
  }
 
-	div.street_list, div.district_list, div.origin_list, div.planning_list,  div.district_list_to_add, div.residents_list, div.an_list, div.live_point_list,
+	div.street_list, div.district_list, div.origin_list, div.planning_list,  div.subdistrict_list_to_add, div.district_list_to_add, div.residents_list, div.an_list, div.live_point_list,
 	div.garage_list, div.wc_list, div.wash_machine_list, div.heating_list, div.water_list, div.wash_list, div.house_type_list
 	{
 		min-width:80px;
@@ -709,7 +709,7 @@ div#user_id >button{
 		box-sizing: content-box;
 		-webkit-box-sizing: content-box;
 	}
-	div.district_list_to_add span, div.residents_list span, div.origin_list label, div.district_list label, div.planning_list label{
+	div.district_list_to_add span, div.subdistrict_list_to_add span, div.residents_list span, div.origin_list label, div.district_list label, div.planning_list label{
 		display: block;	
 	}
 	
@@ -719,6 +719,12 @@ div#user_id >button{
 	}
 
 	div.district_list_to_add span:hover{
+		cursor:pointer;
+		background-color: #d1ffd1;
+		padding: 0 7px;
+		margin: 0 -7px;
+	}
+	div.subdistrict_list_to_add span:hover{
 		cursor:pointer;
 		background-color: #d1ffd1;
 		padding: 0 7px;

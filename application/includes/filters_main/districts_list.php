@@ -1,5 +1,5 @@
 <div class="col-xs-2 deployed" style = 'margin-right: <?=$_SESSION['mobile']==1?"auto;'":"auto;"?>'>
-	<label class="signature">Районы</label>
+	<label class="signature">1Районы</label>
 	<input type="text" class="form-control" placeholder="Район" autocomplete="off" name="dis"
 			value="<?php if(Helper::FilterVal('dis')) {echo Helper::FilterVal('dis'); } ?>">
 	<div class="district_list">

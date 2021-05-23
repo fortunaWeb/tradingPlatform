@@ -3,7 +3,7 @@
     	$city = Get_functions::Get_city_list(Helper::FilterVal('parent_id'));
 
 	?>
-	<label class="signature">Город</label>
+	<label class="signature">2Город</label>
 	<select class="form-control" name="live_point">
 		<option value="Новосибирск"
             <?php if(Helper::FilterVal('live_point')=="Новосибирск" || Helper::FilterVal('live_point')=="") echo "selected"; ?>

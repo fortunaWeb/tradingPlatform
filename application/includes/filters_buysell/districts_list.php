@@ -1,5 +1,5 @@
 <div class="col-xs-2 deployed">
-	<label class="signature">Районы</label>
+	<label class="signature">2Районы</label>
 	<input type="text" class="form-control" placeholder="Район" autocomplete="off" name="dis" type="text" 
 			value="<?php if(Helper::FilterVal('dis')) {echo Helper::FilterVal('dis'); } ?>">
 	<div class="district_list">

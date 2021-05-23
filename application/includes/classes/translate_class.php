@@ -412,6 +412,13 @@ Class Translate
 		return $typeStr;
 	}
 
+	static function getFullDistrict($districtId)
+    {
+        $district = DB::Select('*','sub_districts', "`id` = '$districtId'")[0];
+        return  "<span>{$district['district']}</span>, <span>{$district['name']}</span>";
+    }
+
+
 	static function districtAbbr($district)
     {
 		if(empty($district))
@@ -657,13 +664,13 @@ Class Translate
 
 		$topicName = self::getTopicName($topic_id);
 		$planningAbbr = self::planingAbbr($planning,  $actionGet);
-		$dis = self::districtAbbr($dis);
+
 		$apLayoutAbbr =  self::getApLayoutAbbr($ap_layout);
-		$area = self::getAreaString($dis, $city, $actionGet);
+		$area = self::getFullDistrict($dis);
 
 		$rooms = $room_count>0?"/{$room_count}":'';
         $address = (null === $varId)
-            ? "{$area} {$street} {$house}"
+            ? "{$area}, {$street} {$house}"
             : "<span class = 'address_to_change' data-id ='{$varId}' >{$area} {$street} {$house}</span>";
         $title = '';
 

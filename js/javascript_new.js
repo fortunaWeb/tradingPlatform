@@ -377,12 +377,14 @@ function setCity(j, city) {
 	$(".live_point_list").slideUp();
 	$(".live_point_list").empty();
 	$("#live_point").css("border-color", "#5cb85c");
-	if(city != "Новосибирск"){
-		$(".deployed").has("#dis").hide();
-		$("[name=dis]").val("");
-	}else{
-		$(".deployed").has("#dis").show();
-	}
+    $("[name=dis]").val("");
+
+	// if(city != "Новосибирск"){
+	// 	$(".deployed").has("#dis").hide();
+	//
+	// }else{
+	// 	$(".deployed").has("#dis").show();
+	// }
 	//$("ul#str_list").remove();
 }
 
@@ -1329,15 +1331,26 @@ $(document).ready(function() {
 			$(buttonsControl).hide();
 		}
 	});
-			
-	//выбор района при создании варианта
-	$(".district_list_to_add span").on("click", function(){
-		$("#dis").val($(this).text());
-		$(".district_list_to_add").slideUp();
-		$("[name=dis]").css("border-color", "#5cb85c");
-	});
 
-	$(document).mouseup(function(e){
+    //выбор района при создании варианта
+    $(".district_list_to_add span").on("click", function(){
+    	var district = $(this).text();
+        $("#dis").val(district );
+        console.log(district);
+        $(".district_list_to_add").slideUp();
+        $("[name=dis]").css("border-color", "#5cb85c");
+        $.ajax({
+            type: "POST",
+            url: "?task=buysell&action=get_subdistr",
+            data: "district="+district ,
+            success: function(html){
+                $("#subdistrict_list_to_add").html(html);
+                $("#sub_dis").val('');
+            }
+        })
+    });
+
+    $(document).mouseup(function(e){
 		if ($(".district_list_to_add").css("display") != "none"){			
 			var obj = $(".district_list_to_add");
 			if(!obj.is(e.target) && obj.has(e.target).length == 0){
@@ -1345,8 +1358,6 @@ $(document).ready(function() {
 			}  
 		}
 	});	
-
-
 
 	// Смена количества вариантов на странице
 	$("select#limit").on("change", function(){
@@ -1990,6 +2001,13 @@ function ShowEmployee(id){
 	}
 }
 
+function subdistrClick(subdistrict)
+{
+	$("#sub_dis").val(subdistrict);
+	$(".subdistrict_list_to_add").slideUp();
+	$("[name=sub_dis]").css("border-color", "#5cb85c");
+}
+
 function EditEmployee(id){
 	$("form.employee[data-id="+id+"] input").removeAttr("disabled");
 	$("form.employee[data-id="+id+"] textarea").removeAttr("disabled");	
@@ -2128,7 +2146,6 @@ function SendSample(varId, sampleId, type, action_type, empty){
         var text =  $("textarea[name=sample_text]").val();
 	}
     var clientPrice =  $("input[name=sample_client_price]").val();
-	console.log(sampleId);
 	$.ajax({
 		type: "POST",
 		url: "?task=profile&action=sample_add_var",
@@ -2587,7 +2604,7 @@ function loginShow() {
 function updateAddress(id){
     var address = $(".new_address[data-name='new_address"+id+"']").val();
     $.post('?task=admin&action=address_change', 'id='+ id+ '&address='+ address , function(newAddress){
-        console.log(newAddress);
+
         if(newAddress != ''){
             alertify.success("Изменено");
             $(".var_address[data-id="+id+"]").hide();

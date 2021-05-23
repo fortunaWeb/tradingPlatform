@@ -1,26 +1,37 @@
+<?php
+$districtId = $data_res['dis'];
+$district = Helper::getDisById($districtId);
+?>
 <div class="col-xs-2 deployed">
 	<label class="signature">Населеный пункт</label>
-	<input type="text" id="live_point" name="live_point" class="form-control" placeholder="Населеный пункт" autocomplete="off" value="<? if($data_res['live_point']) {echo $data_res['live_point']; }else{echo "Новосибирск";} ?>" onClick="$(this).val('')" required>
+	<input type="text" id="live_point" name="live_point" class="form-control"
+           placeholder="Населеный пункт" autocomplete="off"
+           value="<?=isset($data_res['live_point'])?$data_res['live_point']:''?>"
+           onClick="$(this).val('')" required>
 	<div class="live_point_list" style="display: none;"></div>
 </div>
 <div class="col-xs-2 deployed">
-	<input type="text" class="form-control" id="dis" placeholder="Район" onClick="if($('.district_list_to_add').css('display') == 'none'){$('.district_list_to_add').slideDown();}"  name="dis" type="text" autocomplete="off"  value="<?php if($data_res['dis']) {echo $data_res['dis']; } ?>" style="cursor: pointer;background-color: #FFF;"  readonly required >
+	<input type="text" class="form-control" id="dis" placeholder="Район"
+           onClick="if($('.district_list_to_add').css('display') == 'none'){$('.district_list_to_add').slideDown();}"
+           name="dis" type="text" autocomplete="off"  value="<?=isset($district['district'])?$district['district']:''?>"
+           style="cursor: pointer;background-color: #FFF;"  readonly required >
 	<div class="district_list_to_add" style="display:none">
-		<span>Дзержинский</span>
-		<span>Железнодорожный</span>
-		<span>Заельцовский</span>
-		<span>Калининский</span>
-		<span>Кировский</span>
-		<span>Ленинский</span>
-		<span>Октябрьский</span>
-		<span>Первомайский</span>
-		<span>Советский</span>
-		<span>Центральный</span>							
+		<?=Helper::getDistricts()?>
 	</div>
 </div>
 <div class="col-xs-2 deployed">
+    <input type="text" class="form-control" id="sub_dis" placeholder=" Подрайон"
+           onClick="if($('.subdistrict_list_to_add').css('display') == 'none'){$('.subdistrict_list_to_add').slideDown();}"
+           name="sub_dis" type="text" autocomplete="off"  value="<?=isset($district['name'])?$district['name']:''?>"
+           style="cursor: pointer;background-color: #FFF;"  readonly required >
+    <div class="subdistrict_list_to_add" id = 'subdistrict_list_to_add' style="display:none">
+        <?=isset($district['district'])?Helper::getSubDistricts($district['district']):''?>
+    </div>
+</div>
+<input type="hidden" name = 'districtId' value='<?=$district['id']?>'>
+<div class="col-xs-2 deployed">
 	<input type="text" id="str" name="street" class="form-control" placeholder="Улица" autocomplete="off" <?if($_GET["parent_id"]!=6 && $_GET["parent_id"]!=4)echo "required";?> 
-	value="<?php if($data_res['street']) {echo $data_res['street']; } ?>">
+	value="<?=isset($data_res['street'])?$data_res['street']:''?>">
 	<div class="street_list" style="display: none;"></div>
 </div>
 <?php

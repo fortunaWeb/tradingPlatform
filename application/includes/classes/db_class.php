@@ -70,7 +70,7 @@ Class DB
 
     static public function log($query, $command = 'db.log')
     {
-        $fp = fopen('/var/www/buysell/logs/db/'.$command, "a");
+        $fp = fopen('/var/www/trading_platform/logs/db/'.$command, "a");
 	    $now = new DateTime();
         fwrite($fp, "\r\n{$now->format('Y-m-d H:i:s')} {$query} \n\r");
         fclose($fp);

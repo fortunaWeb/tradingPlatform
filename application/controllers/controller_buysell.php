@@ -48,6 +48,11 @@ class Controller_Buysell extends Controller
 	{
 		$data = $this->model->get_type();
 	}
+
+	function action_get_subdistr()
+	{
+		$data = $this->model->getSubDistr();
+	}
 	
 	function action_search()
 	{

@@ -3,7 +3,7 @@
 	$city = Get_functions::Get_city_list($_GET['parent_id']);
 ?>
 
-	<label class="signature">Город</label>
+	<label class="signature">1Город</label>
 	<!--<input type="text" name="live_point" class="form-control" placeholder="Введите город" 
 	value="<?php 
 		if(Helper::FilterVal('live_point')) {

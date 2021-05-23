@@ -356,6 +356,22 @@ class Model_Buysell extends Model
 			}
 		}			
 	}
+
+	public function getSubDistr()
+    {
+        $district = Helper::FilterVal('district');
+        if($district != null){
+            $subDistricts = DB::Select('name', 'sub_districts', "`district` = '$district'");
+        }else{
+            return '';
+        }
+        $formText = '';
+        foreach ($subDistricts as $subDistrict) {
+            $formText.= "<span onClick ='subdistrClick(\"{$subDistrict['name']}\")' >".$subDistrict['name'].'</span>';
+        }
+        echo $formText;
+        return 'oK';
+    }
 	
 	public function search_street()
 	{
