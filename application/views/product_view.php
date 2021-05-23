@@ -1,0 +1,1 @@
+﻿<?include "application/includes/product.php";?>

@@ -1,0 +1,13 @@
+﻿.checklabel input:checked + label { 
+overflow: hidden; 
+background: #87CEEB;
+color: white;
+
+/* 
+text-shadow: -1px 1px #fea718, -1px 1px #fea718, -2px 2px #fea718, -3px 3px #fea718, -4px 4px #fea718, -5px 5px #fea718, -6px 6px #fea718, -7px 7px #fea718, -8px 8px #fea718, -9px 9px #fea718, -10px 10px #fea718, -11px 11px #fea718, -12px 12px #fea718, -13px 13px #fea718, -14px 14px #fea718, -15px 15px #fea718, -16px 16px #fea718, -17px 17px #fea718, -18px 18px #fea718, -19px 19px #fea718, -20px 20px #fea718, -21px 21px #fea718, -22px 22px #fea718, -23px 23px #fea718, -24px 24px #fea718, -25px 25px #fea718, -26px 26px #fea718, -27px 27px #fea718, -28px 28px #fea718, -29px 29px #fea718, -30px 30px #fea718; font-weight: bold; 
+*/
+ }
+ #label.last {
+	border-left: none;
+padding-left: 5px;
+ }
