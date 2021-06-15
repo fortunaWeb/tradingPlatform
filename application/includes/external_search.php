@@ -32,7 +32,7 @@ if($_GET['task'] == "external")
 	});
 
 function GeoUpdate(val){
-	if(val != "Новосибирск" && val != "НСО" && val != ""){
+	if(val != "Сочи" && val != "НСО" && val != ""){
 		$("[name=dis]").val("");
 		$(".district_list :checkbox").each(function(){
 			$(this).prop("checked", "");

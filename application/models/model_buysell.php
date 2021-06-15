@@ -19,7 +19,7 @@ class Model_Buysell extends Model
 		$group_inc_user = Get_functions::Get_group_inc_user($_SESSION['fio']);
 		
 		$condition = " buysell.active = 1 ";
-		$condition .= isset($_GET['live_point']) ? " AND live_point='{$_GET['live_point']}'" :  " AND live_point='Новосибирск'";
+		$condition .= isset($_GET['live_point']) ? " AND live_point='{$_GET['live_point']}'" :  " AND live_point='Сочи'";
 
 		if($_SESSION['people_id'] == 1 && isset($_GET["suspicion"]) && $_GET["suspicion"]!='' ){
 				$condition.=" AND `suspicion`= ".$_GET["suspicion"]." ";

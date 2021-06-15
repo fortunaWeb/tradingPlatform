@@ -82,22 +82,13 @@ for ($j=0; $j<$arr_num ; ++$j) {
          data-user="<?= $data[$j]['user_id'] ?>">
         <table style='width: 100%;'>
             <tr>
-                <td align="left" style='width: 3%;vertical-align: top;line-height: 0.8;'>
-                    <?
-                    if (!$ngs) { ?>
-                        <font size="2" data-id="last-edit">
+                <td align="left" style='width: 4%;vertical-align: top;line-height: 0.8;'>
+                    <p><font size="2" data-id="last-edit">
                     <?=date("d/m", strtotime($data[$j]['date_last_edit'])); ?>
-                    <br/>
-                    <?=date("H:i", strtotime($data[$j]['date_last_edit'])); ?>
                         </font>
-                    <?
-                    } else { ?>
-                        <font size="2" style='margin-right: 25px;' data-id="last-edit">
-                            <?
-                            echo date("d/m/y H:i", strtotime($data[$j]['date_last_edit'])); ?>
+                    <p><font size="2" data-id="last-edit">
+                            <?=date("H:i", strtotime($data[$j]['date_last_edit'])); ?>
                         </font>
-                    <?
-                    } ?>
 
                     <?php
                     if(!$ngs){
@@ -166,12 +157,13 @@ for ($j=0; $j<$arr_num ; ++$j) {
                         <?php
 //                        echo ($_SESSION['login'] == 1 || $_SESSION['login'] == '8197') ? $data[$j]['id'] : ''
                         ?>
-                        <?=Translate::Var_title_retro($data[$j]['type_id'], $data[$j]['topic_id'], $data[$j]['room_count'], $data[$j]['planning'], $data[$j]['dis'], $data[$j]['street'], $data[$j]['house'], $data[$j]['ap_layout'], $data[$j]['parent_id'], $data[$j]['live_point']) ?>
-                        <a href="javascript:void(0)"
-                            <?= "onClick='show_address(\"" . $data[$j]['coords'] . "\", " . $j . ")' target='_blank' data-toggle='modal' data-target='#modal-win'" ?>
-                        >
-                            <img border="0" src="images/icon/maps.ico"></a>
+                        <?=Translate::Var_title_retro(
+                                $data[$j]['type_id'], $data[$j]['topic_id'], $data[$j]['room_count'], $data[$j]['planning'],
+                                $data[$j]['dis'], $data[$j]['street'], $data[$j]['house'], $data[$j]['ap_layout'],
+                                $data[$j]['parent_id'], $data[$j]['live_point'],$data[$j]['app_status'],$data[$j]['app_type']
 
+                        )
+                        ?>
                         <?= Helper::PriceRetro(
                             $data[$j]['price'],
                             $data[$j]['prepayment'],
@@ -212,22 +204,29 @@ for ($j=0; $j<$arr_num ; ++$j) {
                     </div>
                     <div style="<?= $getTopicId == 3 ? 'display:none;' : '' ?>">
                         <font style='color: #476BC6;font-size: 16px;'>Дополнение: </font>
-                        <?= (!empty($data[$j]['orientir'])) ? "<font class='retro-gray' > Ориентир : </font><font class='retro-green'>" . $data[$j]['orientir'] . ";</font>" : '' ?>
+                        <font class='retro-green'><?=$data[$j]['app_status'] == 'old'? 'вторичка' :'новостройка'?></font>,
+                      <?php
+                        if($data[$j]['y_done'] != 0 ){ ?>
+                            <font class='retro-gray'>Сдача:</font>
+                            <font class='retro-green'><?=$data[$j]['y_done']?><?=$data[$j]['kvartal']!=0?' - '.$data[$j]['kvartal'].'кв':''?></font>,
+                        <?php } ?>
+
+
                         <?php
                         if ($data[$j]['floor'] && $parent != "Дома") {
-                            echo "<font class='retro-gray'>Этажность: </font><font class='retro-green' data-name='floor'>{$data[$j]['floor']}";
+                            echo "<font class='retro-gray'>Этаж: </font><font class='retro-green' data-name='floor'>{$data[$j]['floor']}";
                             if ($data[$j]['floor_count']) {
                                 echo "/{$data[$j]['floor_count']}";
                             }
                             echo "</font>";
                         } else if ($data[$j]['floor_count'] && $parent != "Дома") {
-                            echo "<font class='retro-gray'>Этажность: </font><font class='retro-green' data-name='floor'>ср/{$data[$j]['floor_count']}</font>";
+                            echo "<font class='retro-gray'>Этаж: </font><font class='retro-green' data-name='floor'>ср/{$data[$j]['floor_count']}</font>,";
                         }
                         if ($data[$j]['floor_count'] && $parent == "Дома") {
-                            echo "<font class='retro-gray'>Этажность: </font><font class='retro-green' data-name='floor'>{$data[$j]['floor_count']}</font> ";
+                            echo "<font class='retro-gray'>Этаж: </font><font class='retro-green' data-name='floor'>{$data[$j]['floor_count']}</font>, ";
                         }
                         if (floatval($data[$j]['sq_all']) || floatval($data[$j]['sq_live']) || floatval($data[$j]['sq_k'])) {
-                            echo "<font class='retro-gray'> пл:</font><font class='retro-green' data-name='sq'>";
+                            echo "<font class='retro-gray'> Пл:</font><font class='retro-green' data-name='sq'>";
                             if ($parent != "Гаражи" && $parent != "Дачи") {
                                 if ($data[$j]['sq_all']) {
                                     echo $data[$j]['sq_all'] . "/";
@@ -249,17 +248,17 @@ for ($j=0; $j<$arr_num ; ++$j) {
                             } else {
                                 echo $data[$j]['sq_all'];
                             }
-                            echo "</font> ";
+                            echo "</font>, ";
                         }
                         if ($data[$j]['val_bal'] != 0) {
                             echo "<font class='retro-gray'> Балкон: </font><font class='retro-green'>";
-                            echo $data[$j]['val_bal'] == 5 ? "Нет" : $data[$j]['val_bal'];
-                            echo "</font>";
+                            echo $data[$j]['val_bal'] == 5 ? "нет" : $data[$j]['val_bal'];
+                            echo "</font>,";
                         }
                         if ($data[$j]['val_lodg'] != 0) {
                             echo "<font class='retro-gray'> Лоджии: </font><font class='retro-green'>";
-                            echo $data[$j]['val_lodg'] == 5 ? "Нет" : $data[$j]['val_lodg'];
-                            echo "</font>";
+                            echo $data[$j]['val_lodg'] == 5 ? "нет" : $data[$j]['val_lodg'];
+                            echo "</font>,";
                         }
                         ?>
                         <?= (floatval($data[$j]['sq_land'])) ?
@@ -268,34 +267,31 @@ for ($j=0; $j<$arr_num ; ++$j) {
                         ?>
                     </div>
 
-                    <?=($data[$j]['ap_layout'])?"<font class='retro-gray'>Тип квартиры: </font><font class='retro-green' data-name='sq'>{$data[$j]['ap_layout']}</font>; ":''?>
-                    <?=($data[$j]['wall_type'])?"<font class='retro-gray'>Материал стен: </font><font class='retro-green' data-name='sq'>{$data[$j]['wall_type']}</font>; ":''?>
-                    <?=($data[$j]['own_type'])?"<font class='retro-gray'>Форма собственности: </font><font class='retro-green' data-name='sq'>{$data[$j]['own_type']}</font>; ":''?>
-                    <?=($data[$j]['y_done'])?"<font class='retro-gray'>Год постройки: </font><font class='retro-green' data-name='sq'>{$data[$j]['y_done']}</font>; ":''?>
-                    <?=($data[$j]['developer'])?"<font class='retro-gray'>Застройщик: </font><font class='retro-green' data-name='sq'>{$data[$j]['developer']}</font>; ":''?>
+<!--                    --><?//=($data[$j]['ap_layout'])?"<font class='retro-gray'>Тип квартиры: </font><font class='retro-green' data-name='sq'>{$data[$j]['ap_layout']}</font>; ":''?>
+                    <?=($data[$j]['wall_type'])?"<font class='retro-gray'>Мат: </font><font class='retro-green' data-name='sq'>{$data[$j]['wall_type']}</font>, ":''?>
+<!--                    --><?//=($data[$j]['own_type'])?"<font class='retro-gray'>Форма собственности: </font><font class='retro-green' data-name='sq'>{$data[$j]['own_type']}</font>; ":''?>
+<!--                    --><?//=($data[$j]['construct_y'])?"<font class='retro-gray'>Год постройки: </font><font class='retro-green' data-name='sq'>{$data[$j]['y_done']}</font>; ":''?>
+<!--                    --><?//=($data[$j]['developer'])?"<font class='retro-gray'>Застройщик: </font><font class='retro-green' data-name='sq'>{$data[$j]['developer']}</font>; ":''?>
+                    <?=($data[$j]['wc_type'])?"<font class='retro-gray'>Санузел: </font><font class='retro-green' data-name='sq'>{$data[$j]['wc_type']}</font>, ":''?>
+                    <?=($data[$j]['repair'])?"<font class='retro-gray'>Ремонт: </font><font class='retro-green' data-name='sq'>{$data[$j]['repair']}</font>, ":''?>
+                    <?=($data[$j]['credit_bank'])?"<font class='retro-gray'>Ипотека: </font><font class='retro-green' data-name='sq'>{$data[$j]['credit_bank']}</font>, ":''?>
+                    <?=($data[$j]['full_price'])?"<font class='retro-gray'>Договор: </font><font class='retro-green' data-name='sq'>Вся суммма</font> ":''?>
 
-                    <?=($data[$j]['construct_y'] )
-                        ? "<font class='retro-gray'>Сдача: </font><font class='retro-green' data-name='sq'>".
-                            "{$data[$j]['construct_y']} / {$data[$j]['kvartal']}"."</font>;"
-                        :   ''
-
-                    ?>
-
-                    <div style = "<?=$getTopicId==3?'display:none;':''?>">
-                        <font style='color: #476BC6;font-size: 16px;'>Удобства: </font>
-                        <?=($data[$j]['wc_type'])?"<font class='retro-gray'>Санузел: </font><font class='retro-green' data-name='sq'>{$data[$j]['wc_type']}</font>; ":''?>
-                        <?=($data[$j]['heating'])?"<font class='retro-gray'> Отопление: </font><font class='retro-green' data-name='sq'>{$data[$j]['heating']}</font>; ":''?>
-                        <?=($data[$j]['water'])?"<font class='retro-gray'> Вода: </font><font class='retro-green' data-name='sq'>{$data[$j]['water']}</font>; ":''?>
-                        <?=($data[$j]['sewage'])?"<font class='retro-gray'> Cлив: </font><font class='retro-green' data-name='sq'>{$data[$j]['sewage']}</font>; ":''?>
-                        <?=($data[$j]['wash'])?"<font class='retro-gray'> Мыться: </font><font class='retro-green' data-name='sq'>{$data[$j]['wash']}</font>; ":''?>
-
-                    </div>
+<!--                    <div style = "--><?//=$getTopicId==3?'display:none;':''?><!--">-->
+<!--                        <font style='color: #476BC6;font-size: 16px;'>Удобства: </font>-->
+<!---->
+<!--                        --><?//=($data[$j]['heating'])?"<font class='retro-gray'> Отопление: </font><font class='retro-green' data-name='sq'>{$data[$j]['heating']}</font>; ":''?>
+<!--                        --><?//=($data[$j]['water'])?"<font class='retro-gray'> Вода: </font><font class='retro-green' data-name='sq'>{$data[$j]['water']}</font>; ":''?>
+<!--                        --><?//=($data[$j]['sewage'])?"<font class='retro-gray'> Cлив: </font><font class='retro-green' data-name='sq'>{$data[$j]['sewage']}</font>; ":''?>
+<!--                        --><?//=($data[$j]['wash'])?"<font class='retro-gray'> Мыться: </font><font class='retro-green' data-name='sq'>{$data[$j]['wash']}</font>; ":''?>
+<!---->
+<!--                    </div>-->
                     <div style = 'width: 85%'>
                         <font style='color: #476BC6;font-size: 16px;'>
-                            <?=($getTopicId ==3)?'Сниму':'Описание'?>	:
-
-                        </font><span style='text-transform: lowercase;' data-name='comment' class = 'comment' ><?=$data[$j]['text'];?></span>
-                        <?if(isset($data[$j]['hidden_text']) && $data[$j]['hidden_text']!="" && in_array($data[$j]['people_id'], $people_ids_in_an)){
+                            <?=!empty($data[$j]['text'])?"Описание:
+                                </font><span style='text-transform: lowercase;' data-name='comment' class = 'comment' >{$data[$j]['text']}</span>":''?>
+                        <?php
+                        if(isset($data[$j]['hidden_text']) && $data[$j]['hidden_text']!="" && in_array($data[$j]['people_id'], $people_ids_in_an)){
                             echo "<br /><font style='color: #476BC6;font-size: 16px;'>Скрытое примечание: </font>{$data[$j]['hidden_text']}";
                         }?>
                     </div>
@@ -390,7 +386,7 @@ for ($j=0; $j<$arr_num ; ++$j) {
                                 if(empty($_POST['sample_id']) && Helper::isMobileExists($_SESSION['people_id'])){
                                     ?>
                                     <span >
-                                    <a href='javascript:void(0)' data-name='var_clone'>Сохранить к себе</a>
+                                    <a href='javascript:void(0)' data-name='var_clone'>Скопировать</a>
 								</span>
 
                                 <?php

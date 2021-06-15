@@ -260,22 +260,22 @@ Class Translate
 			if($type_id==18){
 				$type_name = "комнату";
 			}else if($type_id==1){
-				$type_name = $room_count."-комн";
+				$type_name = $room_count."-комн.";
 			}else if($type_id==3){
 				$type_name = "Дом";
 			}
 		}else{
 			if($type_id >= 19 && $type_id <= 24){
-				$type_name = ($type_id-18) ."-ком";
+				$type_name = ($type_id-18) ."-ком.";
 			}else if($type_id == 0){
-				$type_name = $room_count."-ком";
+				$type_name = $room_count."-ком.";
 			}else if($type_id > 24){
 				$type_name = DB::Select("`name_short`", "re_type_object", "`id`='".$type_id."'")[0]['name_short'];
 				if($type_id > 24 && $type_id < 30 && $room_count >0){
-					$type_name.="/".$room_count." комн";
+					$type_name.="/".$room_count." комн.";
 				}
 			}else{
-				$type_name = "комн";
+				$type_name = "комн.";
 			}
 		}
 /**/		
@@ -338,7 +338,7 @@ Class Translate
 		$street = str_replace('"', '', $street);
 		$house = str_replace('"', '', $house);
 
-		$dis = $city!="Новосибирск" ? $city : $dis;
+		$dis = $city!="Сочи" ? $city : $dis;
 
 		if($parent_id == 18){
 			$title ="{$topic_name}<span style='font-weight: normal;'> ".strtolower($type_name) /*." {$ap_layout} * ".strtolower($planning)." {$dis} */ .". {$city}, {$street} {$house}  </span>";
@@ -388,25 +388,25 @@ Class Translate
 		$typeStr = '';
 		switch ($type_id) { 
 			case 25:
-				$typeStr = 'К-м';
+				$typeStr = 'К-м.';
 				break;
 			case 26:
-				$typeStr = 'Комн';
+				$typeStr = 'Комн.';
 				break;
 			case 27:
-				$typeStr = 'Комм';
+				$typeStr = 'Комм.';
 				break;
 			case 28:
-				$typeStr = '2 см комн';
+				$typeStr = '2 см комн.';
 				break;
 			case 52:
-				$typeStr = '2 см комм';
+				$typeStr = '2 см комм.';
 				break;
 			case 53:
-				$typeStr = 'Общ';
+				$typeStr = 'Общ.';
 				break;
 			default:
-				$typeStr = 'Ком';
+				$typeStr = 'Ком.';
 				break;
 		}
 		return $typeStr;
@@ -415,7 +415,7 @@ Class Translate
 	static function getFullDistrict($districtId)
     {
         $district = DB::Select('*','sub_districts', "`id` = '$districtId'")[0];
-        return  "<span>{$district['district']}</span>, <span>{$district['name']}</span>";
+        return  "<span>р-н. {$district['district']}</span>, <span>м-н. {$district['name']}</span>";
     }
 
 
@@ -504,7 +504,7 @@ Class Translate
 					$planingStr = $planing;
 					break;
 			}
-		return strtolower($planingStr).'.';
+		return strtolower($planingStr).',';
 	}
 
 	static function getTopicName($topic_id){
@@ -560,7 +560,7 @@ Class Translate
 
 	static function getAreaString($district, $city, $action = null){
 		$area = $city.",";
-		if($city == "Новосибирск"){
+		if($city == "Сочи"){
 			$area = $district;
 		}
 		return $area;
@@ -619,13 +619,15 @@ Class Translate
     /**
      * type_id = parent_id
      */
-	static function Var_title_retro($type_id, $topic_id, $room_count, $planning, 
-				$dis, $street, $house, $ap_layout, $parent_id, $city, $action=false, $varId = null){
+	static function Var_title_retro($type_id, $topic_id, $room_count, $planning,
+            $dis, $street, $house, $ap_layout, $parent_id, $city,$app_status,$app_type,
+            $action=false, $varId = null
+    ){
 		if($action){
 			if($type_id==18){
 				$type_name = "комнату";
 			}else if($type_id==1){
-				$type_name = $room_count." комн";
+				$type_name = $room_count." комн.";
 			}else if($type_id==3){
 				$type_name = "Дом";
 			}else if($type_id==7){
@@ -635,11 +637,11 @@ Class Translate
 			}
 		}else{
 			if($type_id >= 19 && $type_id <= 24){
-				$type_name = ($type_id-18) ."-комн";
+				$type_name = ($type_id-18) ."-комн.";
 			}else if($type_id == 0){
-				$type_name = $room_count."-комн";
+				$type_name = $room_count."-комн.";
 			}else if($type_id == 1){
-				$type_name = $room_count."-комн";
+				$type_name = $room_count."-комн.";
 			}else if($type_id == 3){
 				$type_name = "Дом";
 			}else if($type_id == 4){
@@ -653,7 +655,7 @@ Class Translate
 				$type_name = DB::Select("`name_short`", "re_type_object", "`id`='".$type_id."'")[0]['name_short'];
 
 				if($type_id > 24 && $type_id < 30 && $room_count >0){
-					$type_name.=" - ".$room_count." комн";
+					$type_name.=" - ".$room_count." комн.";
 				}
 			}else{
 				$type_name = "";
@@ -661,6 +663,8 @@ Class Translate
 		}
 
 		$actionGet = isset($_GET['action']) ? $_GET['action'] : 'index';
+
+		$appType = $app_type=='flat'?'кв.':'ап.';
 
 		$topicName = self::getTopicName($topic_id);
 		$planningAbbr = self::planingAbbr($planning,  $actionGet);
@@ -670,12 +674,12 @@ Class Translate
 
 		$rooms = $room_count>0?"/{$room_count}":'';
         $address = (null === $varId)
-            ? "{$area}, {$street} {$house}"
-            : "<span class = 'address_to_change' data-id ='{$varId}' >{$area} {$street} {$house}</span>";
+            ? " $area, ул. $street $house"
+            : "<span class = 'address_to_change' data-id ='$varId' > $area ул. $street $house</span>";
         $title = '';
 
 		if($parent_id == '18'){
-			$title ="{$topicName}
+			$title ="$topicName 
 				<span style='font-weight: normal;'> ".self::getTypeRoomByTypeId($type_id). $rooms
 							." {$apLayoutAbbr} " . $planningAbbr . " {$area} {$street} {$house} </span>
 
@@ -683,8 +687,8 @@ Class Translate
 							." {$apLayoutAbbr} " . $planning . " {$address} </span>
 							";
 		}else{
-			$title ="{$topicName}<span style='font-weight: normal;'>".strtolower($type_name).".   " . $planningAbbr .
-                " {$address}</span>
+			$title ="{$topicName}<span style='font-weight: normal;'>".strtolower($type_name).",$appType, план $planningAbbr
+                $address </span>
 				<span style='display:none'>".strtolower($type_name).".   " . $planning . " {$area} {$street} {$house} </span>
 				";
 		}

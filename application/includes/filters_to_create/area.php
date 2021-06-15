@@ -2,7 +2,7 @@
 	<div class="col-xs-2 deployed">
 		<label class="signature">Площади, м<sup>2</sup></label>
 		<div class="input-group interval">			
-			<input type="text" id="sq_all" name="sq_all" class="form-control" placeholder="общ."  size="3" maxlength="3" value="<?php if($data_res['sq_all']) {echo $data_res['sq_all']; } ?>" >
+			<input required type="text" id="sq_all" name="sq_all" class="form-control" placeholder="общ."  size="3" maxlength="3" value="<?php if($data_res['sq_all']) {echo $data_res['sq_all']; } ?>" >
 			<input type="text" id="sq_live" name="sq_live" class="form-control" placeholder="жил." size="3" maxlength="3" value="<?php if($data_res['sq_live']) {echo $data_res['sq_live']; } ?>" >
 			<input type="text" id="sq_k" name="sq_k" class="form-control" placeholder="кух." size="3" maxlength="3" value="<?php if($data_res['sq_k']) {echo $data_res['sq_k']; } ?>" >
 			

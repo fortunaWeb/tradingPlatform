@@ -1,31 +1,23 @@
 <div class="col-xs-2 deployed">
 	<label class="signature">Планировка</label>
 	<?$planning = $data_res['planning'] ? $data_res['planning'] : $data_res['planning'];?>
-	<select class="form-control"  name="planning" >
+	<select class="form-control"  name="planning" required >
 		<option value="">выберите планировку</option>
-		<?if($parent != "Комната"){?>			
-			<option value="изолированная" <?php if($planning == "изолированная") echo "selected"; ?>>
-				Изолированная
-			</option>
-			<option value="смежная" <?php if($planning == "смежная") echo "selected"; ?>>
-				Смежная
-			</option>
-			<option value="см-изолированная" <?php if($planning == "см-изолированная") echo "selected"; ?>>
-				См-изолированная
-			</option>					
 			<option value="студия" <?php if($planning == "студия") echo "selected"; ?>>
-				Студия
-			</option>					
-		<?}else{?>
-			<option value="изолированная" <?php if($planning == "изолированная") echo "selected"; ?>>
-				Изолированная
+                студия
 			</option>
-			<option value="смежная" <?php if($planning == "смежная") echo "selected"; ?>>
-				Смежная дальняя
+			<option value="свободная" <?php if($planning == "свободная") echo "selected"; ?>>
+                свободная
 			</option>
-			<option value="см-изолированная" <?php if($planning == "см-изолированная") echo "selected"; ?>>
-				Смежная проходная
+
+            <option value="изолированная" <?php if($planning == "изолированная") echo "selected"; ?>>
+                Изолированная
+            </option>
+            <option value="смежная" <?php if($planning == "смежная") echo "selected"; ?>>
+                Смежная
+            </option>
+			<option value="евродвушка" <?php if($planning == "евродвушка") echo "selected"; ?>>
+				Евродвушка
 			</option>
-		<?}?>
 	</select>
 </div>

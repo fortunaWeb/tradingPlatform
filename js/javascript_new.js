@@ -377,15 +377,14 @@ function setCity(j, city) {
 	$(".live_point_list").slideUp();
 	$(".live_point_list").empty();
 	$("#live_point").css("border-color", "#5cb85c");
-    $("[name=dis]").val("");
 
-	// if(city != "Новосибирск"){
-	// 	$(".deployed").has("#dis").hide();
-	//
-	// }else{
-	// 	$(".deployed").has("#dis").show();
-	// }
-	//$("ul#str_list").remove();
+	if(city != "Сочи"){
+		$(".deployed").has("#dis").hide();
+	 $("[name=dis]").val("");
+	}else{
+		$(".deployed").has("#dis").show();
+	}
+	$("ul#str_list").remove();
 }
 
 function removeStreet(cur_num) {

@@ -244,7 +244,7 @@ foreach ($filelist as $file) {
                     FROM {$table}
                     WHERE  `dis` <> ''  AND
                             `dis` <> '0' AND
-                            live_point = 'Новосибирск'  AND
+                            live_point = 'Сочи'  AND
                             street = '{$checkAddress['street']}' AND
                             house = '{$checkAddress['house']}'
                     GROUP BY dis HAVING COUNT(*) = (
@@ -254,7 +254,7 @@ foreach ($filelist as $file) {
                                     FROM {$table}
                                         WHERE `dis` <> ''  AND
                                                 `dis` <> '0' AND
-                                                live_point = 'Новосибирск'  AND
+                                                live_point = 'Сочи'  AND
                                                 street = '{$checkAddress['street']}' AND
                                                 house = '{$checkAddress['house']}'
                                         GROUP By dis

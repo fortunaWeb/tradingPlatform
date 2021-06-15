@@ -29,7 +29,18 @@ $(function (){
 	if($("#sq_all").length > 0)MinusRemove($("#sq_all"));
 	if($("#sq_k").length > 0)MinusRemove($("#sq_k"));
 	if($("#sq_land").length > 0)MinusRemove($("#sq_land"));
-	
+
+
+    $("[name=app_status]").on("change", function(){
+        if($(this).val()=='old'){
+            $("#construct").hide();
+            $('#y_done').prop('required', false)
+        }else{
+            $("#construct").show();
+            $('#y_done').prop('required', true)
+        }
+    });
+
 	/*скрытие типа объекта при выборе коммуналки*/
 	$("[name=type_id], [name=ap_layout]").on("change", function(){
 		if($(this).val()==50 || $(this).val()==52 || $(this).val()==53  || $(this).val()==54){
@@ -369,15 +380,32 @@ function check_number(obj) {
 		<div class="col-xs-12">
 			<?$title = $_GET['action']=="edit"? "Редактирование варианта" : "Добавление нового варианта";?>
 			<legend><?=$title?> (<?=$topic." - ".$parent?>)
-			<?if($_GET['action']!="newvar"){?>
+			<?php/*
+             if($_GET['action']!="newvar"){ ?>
 				<span style="float: right;font-size: 14px;color: #C50202;">дата следующего прозвона: <input type="text" data-id="date" class="form-control" name="col_date" style="width:110px; display:inline-block" placeholder="дата прозвона" value="<?php if (isset($data_res['col_date'])) echo $data_res['col_date']; ?>"></span>
-			<?}?>
+			<?php } /**/?>
 			</legend>
             <?php
                 include "application/includes/filters_to_create/copyright.php";
-                if($parent_id ==1 || $parent_id == 18) {
-                    include "application/includes/filters_to_create/parent_ch.php";
+                include "application/includes/filters_to_create/appartment_type.php";
+                include "application/includes/filters_to_create/appartment_status.php";
+
+            $constructView = '';
+            if($parent != 'Земля' && $parent != ' Коммерческая'){
+                if($data_res['app_status']!='new'){
+                    $constructView  = 'display:none;';
                 }
+                echo "<div id ='construct'  style = '$constructView'>";
+                include "application/includes/filters_to_create/y_done.php";
+                include "application/includes/filters_to_create/quarter.php";
+                include "application/includes/filters_to_create/developer.php";
+                echo "</div>";
+            }
+
+            /*Застройщик*/
+
+            /*сдача*/
+
             ?>
 
 		</div>
@@ -399,14 +427,18 @@ function check_number(obj) {
 			include "application/includes/filters_to_create/rooms_count.php";
 			include "application/includes/filters_to_create/area.php";
 			include "application/includes/filters_to_create/planning.php";
-			include "application/includes/filters_to_create/estate_type.php";
-			include "application/includes/filters_to_create/wc_type.php";
-			include "application/includes/filters_to_create/bal_lodg.php";
-//			include "application/includes/filters_to_create/park.php";
-			include "application/includes/filters_to_create/floor.php";
-			include "application/includes/filters_to_create/wall_type.php";
-			/*форма собственности и мебель*/
-			include "application/includes/filters_to_create/own_type.php";
+            include "application/includes/filters_to_create/wc_type.php";
+            include "application/includes/filters_to_create/bal_lodg.php";
+        ?>
+    </div>
+    <div class="row">
+        <?php
+            include "application/includes/filters_to_create/floor.php";
+            include "application/includes/filters_to_create/wall_type.php";
+            include "application/includes/filters_to_create/construct_y.php";
+            include "application/includes/filters_to_create/repair.php";
+            include "application/includes/filters_to_create/credit_bank.php";
+
 		}else if($parent == "Комната"){
 			include "application/includes/filters_to_create/estate_type.php";
 			include "application/includes/filters_to_create/room_type.php";
@@ -427,16 +459,16 @@ function check_number(obj) {
 			include "application/includes/filters_to_create/wash.php";
 			include "application/includes/filters_to_create/water.php";
 			include "application/includes/filters_to_create/sewage.php";
-//			include "application/includes/filters_to_create/park.php";
+
 			include "application/includes/filters_to_create/floor.php";
 			include "application/includes/filters_to_create/wall_type.php";
 			include "application/includes/filters_to_create/rooms_count.php";
-//            include "application/includes/filters_to_create/sleeping_area.php";
+
 			include "application/includes/filters_to_create/own_type.php";
 		}else if($parent == "Дачи"){
 			include "application/includes/filters_to_create/estate_type.php";
 			include "application/includes/filters_to_create/area.php";
-//			include "application/includes/filters_to_create/park.php";
+
 			include "application/includes/filters_to_create/own_type.php";
 		}else if($parent == "Гаражи"){
 			include "application/includes/filters_to_create/estate_type.php";
@@ -457,17 +489,10 @@ function check_number(obj) {
 			include "application/includes/filters_to_create/wc_type.php";
 			include "application/includes/filters_to_create/bal_lodg.php";
             include "application/includes/filters_to_create/sleeping_area.php";
-//			include "application/includes/filters_to_create/park.php";
+
 			include "application/includes/filters_to_create/floor.php";
 			include "application/includes/filters_to_create/wall_type.php";
-			/*Застройщик*/
-			include "application/includes/filters_to_create/developer.php";
-			/*сдача*/
-			include "application/includes/filters/delivery.php";
 		}
-		if($parent != 'Земля' && $parent != ' Коммерческая'){
-            include "application/includes/filters_to_create/construct_y.php";
-        }
 		?>
 
 	</div>
@@ -476,11 +501,12 @@ function check_number(obj) {
 			<legend class = 'price_rent'>Цена и условия</legend>
 			<p style = "color:red;"><i>
                     Значение в поле"<b>цена</b>" состоит из суммы стоимости объекта и услуг агентства.<br/>
-                    Пишем полное число со всеми нулями.
+                    Пишем сумму без нулей в тысячах.
             </i></p>
 			<?php
 				include "application/includes/filters_to_create/price.php";
-				include "application/includes/filters_to_create/additional_terms.php";
+               include "application/includes/filters_to_create/additional_terms.php";
+//				include "application/includes/filters_to_create/full_price.php";
 			?>
 		</div>
 		<?=$_SESSION['mobile']?"</div><div class='row'>":""?>

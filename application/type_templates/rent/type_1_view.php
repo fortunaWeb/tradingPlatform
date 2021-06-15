@@ -6,7 +6,7 @@
 		</div>
 		<div class="col-xs-2">
 			<input type="text" name="live_point" class="form-control" placeholder="Введите город" required 
-			value="<?php if($data_res['live_point']) { echo $data_res['live_point']; }else{echo 'Новосибирск';} ?>">										
+			value="<?php if($data_res['live_point']) { echo $data_res['live_point']; }else{echo 'Сочи';} ?>">
 		</div>
 		<div class="col-xs-2">
 			<input type="text" class="form-control" placeholder="Район"  name="dis" type="text" required 

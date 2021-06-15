@@ -800,7 +800,7 @@ Class Helper
                 } else if ($k == "parent_id" && $v == "18" && $_SESSION['search_user_id'] == "ngs") {
                     $condition .= " AND type_id=18";
                 } else if ($k == "live_point" && $v == "НСО") {
-                    $condition .= " AND `live_point` != 'Новосибирск'";
+                    $condition .= " AND `live_point` != 'Сочи'";
                 } else if ($k == "to_metro" && $v != "") {
                     $condition .= " AND `distance_to_metro` > 0 AND coords!='55.030199,82.92043' AND `distance_to_metro` < " . $v;
                 } else if (ereg('type_id', $k) && $v != "") {
@@ -983,7 +983,7 @@ Class Helper
                 $condition .= " AND `live_point` = '{$live_point}'";
             }
         } else {
-            $condition .= " AND `live_point` = 'Новосибирск'";
+            $condition .= " AND `live_point` = 'Сочи'";
         }
 
         if ($room_count != "") $condition .= Helper::MultiCondition("room_count='" . $room_count, "' OR room_count='");
@@ -1655,7 +1655,7 @@ Class Helper
 
         $mail->CharSet = 'UTF-8';
         $mail->From = '89139179516@mail.ru';
-        $mail->FromName = 'Fortunasib';
+        $mail->FromName = 'Trading-Platform';
         $mail->addAddress($email);
         //$mail->addReplyTo('info@example.com', 'Information');
         //$mail->addCC('cc@example.com');

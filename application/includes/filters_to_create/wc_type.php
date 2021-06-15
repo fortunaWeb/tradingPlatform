@@ -1,6 +1,6 @@
 <div class="col-xs-2 deployed">
 	<label class="signature">Санузел</label>	
-	<select class="form-control" name="wc_type">
+	<select class="form-control" name="wc_type" required>
 		<option value="">выберите</option>
 		<option value="раздельный" <?php if($data_res['wc_type'] == "раздельный") echo "selected"; ?>>
 			Раздельный

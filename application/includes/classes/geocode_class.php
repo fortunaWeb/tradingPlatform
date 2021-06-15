@@ -29,7 +29,7 @@ require_once 'GeoObject.php';
          $status = '';
          $var = DB::Select('topic_id, live_point, street, house, coords, metro_coords, distance_to_metro, metro_name',
              're_var', "id = {$varId}  LIMIT 1")[0];
-         if($var['live_point'] != 'Новосибирск' && $var['topic_id'] <> 1){
+         if($var['live_point'] != 'Сочи' && $var['topic_id'] <> 1){
              return ' NOT NSK ';
          }
 

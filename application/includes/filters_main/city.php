@@ -5,13 +5,13 @@
             Helper::FilterVal('action')
         );
     ?>
-	<label class="signature">3Город</label>
+	<label class="signature">Город</label>
 	<!--<input type="text" name="live_point" class="form-control" placeholder="Введите город" 
 	value="<?php 
 		if(Helper::FilterVal('live_point')) {
 			 echo Helper::FilterVal('live_point'); 
 		}else{
-			echo 'Новосибирск';
+			echo 'Сочи';
 		} 
 	?>">-->
 	<select class="form-control" name="live_point">		

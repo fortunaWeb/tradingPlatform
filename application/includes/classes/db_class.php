@@ -24,7 +24,7 @@ Class DB
 	static function Insert($table, $column, $values, $log = null)
     {
 		$query = "INSERT INTO ".$table." (".$column.") VALUE (".$values.")";
-        if(null===$log){
+        if(null!=$log){
             self::log($query,'insert');
         }
 		try{

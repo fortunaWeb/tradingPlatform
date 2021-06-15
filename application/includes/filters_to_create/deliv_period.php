@@ -1,4 +1,4 @@
-<div class="col-xs-2 deployed">
+<div class="col-xs-3 deployed">
 	<label class="signature">Период сдачи</label>
 	<select class="form-control" name="deliv_period" id="deliv_period" required>
 		<option value="">выберите период</option>

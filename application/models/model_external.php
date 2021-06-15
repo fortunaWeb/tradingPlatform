@@ -25,7 +25,7 @@ class Model_External extends Model
 		$sq=0;
 			
 		$condition = " v.active = 1 ";
-		$condition .= isset($_GET['live_point']) ? " AND live_point='{$_GET['live_point']}'" :  " AND live_point='Новосибирск'";
+		$condition .= isset($_GET['live_point']) ? " AND live_point='{$_GET['live_point']}'" :  " AND live_point='Сочи'";
 
 		if($_SESSION['group_topic_id'] != 2 && ($_GET["topic_id"]%2!=0 OR !isset($_GET['topic_id']))){
 

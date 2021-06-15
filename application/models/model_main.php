@@ -14,8 +14,8 @@ class Model_Main extends Model
 	   tv, washing, refrig, ap_view_date, ap_race_date, status, premium, favorit,
 	    ap_view_price, in_black_list, review, residents, wc_type, heating, wash, copyright,
 	    park, water, sewage, torg, warning, metro_name, distance_to_metro, prolong_garant, last_call_date, last_call_date_ts,
-	    wall_type, obmen, ipoteka, chist_prod, developer, construct_y, kvartal,own_type,y_done,
-	    v.keys, v.sleeping_area";
+	    wall_type, obmen, ipoteka, chist_prod, developer, construct_y, kvartal,own_type,y_done, 
+	    v.keys, v.sleeping_area, full_price, app_status, app_type,repair,credit_bank";
 	
 	public function get_data()
 	{
@@ -38,7 +38,7 @@ class Model_Main extends Model
 
 		$condition .= Helper::FilterVal('live_point')
             ? " AND live_point='{$_POST['live_point']}'"
-            :  " AND live_point='Новосибирск'";
+            :  " AND live_point='Сочи'";
 
 
 		if($_SESSION['people_id'] == 1 && Helper::FilterVal('suspicion') ){

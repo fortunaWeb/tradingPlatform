@@ -1,16 +1,9 @@
 <div class="col-xs-2 deployed" style="max-width: 190px;">
 	<label class="signature">Балконов  | лоджий</label>
 	<div class="input-group interval" style = 'margin: 0px 10px; width: 90px'>
-          <select class="form-control"  name="val_bal" id = "val_bal"
-                  onchange='
-                    if($(this).val()==0){
-                            $(this).css("border-color", "red");
-                        }else{
-                            $(this).css("border-color", "rgb(92, 184, 92)");
-                        }'
-<!--            style = '--><?//=empty($data_res['val_bal'])? "border-color:red;":""?><!--'-->
-          >
-            <option value="0" <?=($data_res['val_bal'] == "0") ? "selected":""?>>
+          <select    class="form-control"  name="val_bal" id = "val_bal" required
+         >
+            <option value="" <?=($data_res['val_bal'] == "0") ? "selected":""?>>
                 =?=
             </option>
             <option value="1" <?php if($data_res['val_bal'] == "1") echo "selected"; ?>>
@@ -27,17 +20,11 @@
             </option>
         </select>
         <span style = 'width: 0%'></span>
-        <select class="form-control" name="val_lodg" id = "val_lodg"
-            onchange='
-            if($(this).val()==0){
-                    $(this).css("border-color", "red");
-                }else{
-                    $(this).css("border-color", "rgb(92, 184, 92)");
-                }
-            '
-<!--            style = '--><?//=empty($data_res['val_bal'])? "border-color:red;":""?><!--'-->
+        <select required class="form-control" name="val_lodg" id = "val_lodg"
+
+        required
         >
-            <option value="0" <?=($data_res['val_lodg'] == "0") ? "selected":""?>>
+            <option value="" <?=($data_res['val_lodg'] == "0") ? "selected":""?>>
                 =?=
             </option>
             <option value="1" <?php if($data_res['val_lodg'] == "1") echo "selected"; ?>>

@@ -93,7 +93,7 @@ for ($j=0; $j<$arr_num ; ++$j) {
 			<a href="javascript:void(0)" <?if(!$phone_enter)echo "onClick='show_address(\"".$data[$j]['coords']."\", ".$j.")' target='_blank' data-toggle='modal' data-target='#modal-win'";?>>
 				<span id="address" style='display:inline-block;'>
 					<?php 
-					echo ($data[$j]['live_point'] == "Новосибирск" ? $data[$j]['dis'] : $data[$j]['live_point']);; 					
+					echo ($data[$j]['live_point'] == "Сочи" ? $data[$j]['dis'] : $data[$j]['live_point']);;
 					if(strlen($data[$j]['street']) > 3){
 						echo  ", ".$data[$j]['street'];
 					}

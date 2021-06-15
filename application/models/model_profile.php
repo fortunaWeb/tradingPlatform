@@ -121,6 +121,7 @@ class Model_Profile extends Model
 			$d=0;
 			$s=0;
 			$t=0;
+			$disList = [];
             $condition_var = 1;
             if(($active == 0 || $active == 1) && $action  == 'mytype'){
                 $condition_var.= " AND re_var.active = ".$active;
@@ -170,9 +171,9 @@ class Model_Profile extends Model
 						if($v!=""){$condition_var.=" AND ".str_replace(' ', '', $v).")";}
 						else{$condition_var.=" AND 999999999)";}
 					}else if(ereg('dis', $k) && $d==0){
-						if($v!=""){$condition_var.=" AND (`dis`='".$v."'"; $d++;}
-					}else if(ereg('dis', $k)){
-						if($v!=""){$condition_var.=" OR `dis`='".$v."'";}
+
+					    $disList[$k] = $v;
+
 					}else if(ereg('street', $k) && $s==0){
 						if ($d != 0){$condition_var.=")";$d=0;}
 						if($v!=""){$condition_var.=" AND (`street`='".$v."'"; $s++;}
@@ -184,6 +185,20 @@ class Model_Profile extends Model
 					}					
 				}
 			}
+
+			if(!empty($disList)){
+                $disNames  = ' ';
+                foreach ($disList as $dis) {
+                    $disNames .= " `district` = '$dis' OR";
+                }
+                $disCond = '';
+                foreach ( DB::Select('id', 'sub_districts', substr($disNames, 0, -2)) as $subId) {
+                    $disCond .= "'{$subId['id']}',";
+                }
+                if(!empty($disCond )){
+                    $condition_var  .=  " AND `dis` IN (" .substr($disCond, 0, -1).')';
+                }
+            }
 
             if(Helper::FilterVal('description')){
                 $condition_var .= " AND text LIKE  '%".Helper::FilterVal('description')."%'";
@@ -540,7 +555,7 @@ class Model_Profile extends Model
 				DB::Delete("re_review", "var_id = {$varId}");
 
 			}else{
-				DB::Insert("`re_var`", $column, $values);
+				DB::Insert("`re_var`", $column, $values, true);
 				$curVar = DB::Select("`id`", "`re_var`", $condition);
 				$var_id = $curVar[0]['id'];
 			}
@@ -1405,7 +1420,7 @@ class Model_Profile extends Model
 			$subject = "Сообщение от пользователя. Логин ".$_SESSION['login'];
 			$message = $_POST['text'];						
 			$headers  = "Content-type: text/html; charset=utf-8 \r\n"; 
-			$headers .= "From: Fortunasib.com <fortunasib@mail.ru>\r\n";
+			$headers .= "From: trading-platform.ru <fortunasib@mail.ru>\r\n";
 			mail($to, $subject, $message, $headers); 
 		
 			unset($date, $result, $to, $subject, $message, $headers);

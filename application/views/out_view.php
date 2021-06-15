@@ -14,7 +14,7 @@
 		<meta name="keywords" content="" />
 		<!-- disable iPhone inital scale -->
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Fortunasib</title>
+		<title>Trading-Platform</title>
 		<link rel="stylesheet" href="/css/alertify.core.css">
 		<link rel="stylesheet" href="/css/alertify.default.css">
 		<link rel="stylesheet" type="text/css" href="css/style.css" />
