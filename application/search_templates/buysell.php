@@ -16,14 +16,22 @@
                 if($parent == "Квартиры" || $parent == 'Новостройки'){
                     include "application/includes/filters_buysell/count_types.php";
                 }
+
+            include "application/includes/filters_buysell/app_type.php";
+            include "application/includes/filters_buysell/app_status.php";
             ?>
+
+
+
         </div>
 		<div class="geo" style="width: 99%;">
 
 	<?php
 
 		include "application/includes/filters_main/city.php";
-		include "application/includes/filters_buysell/districts_list.php";
+//		include "application/includes/filters_buysell/districts_list.php";
+
+        include "application/includes/filters_buysell/address_modal.php";
 		include "application/includes/filters_buysell/street_house.php";
 	?>
 		</div>
@@ -64,8 +72,19 @@
         ?>
 	</div>
 
-    <hr>
-    <div class="row col-xs-12 " style = 'text-align: right;' id="control_panel">
+    <div class="row" >
+        <?php
+
+            include "application/includes/filters_buysell/floor.php";
+            include "application/includes/filters_buysell/floor_count.php";
+            include "application/includes/filters_buysell/repair.php";
+            include "application/includes/filters_buysell/credit_bank.php";
+            include "application/includes/filters_buysell/area.php";
+            include "application/includes/filters_buysell/planning.php";
+            ?>
+    </div>
+
+    <div class="row"  style = 'text-align: right'>
         <?php
             include "application/includes/filters_buysell/searchFooter.php";
         ?>

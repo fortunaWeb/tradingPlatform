@@ -112,7 +112,7 @@ class Model_Main extends Model
 		$page = isset($_POST['page']) ? $_POST['page'] : 1;
 		$limit_max = Get_functions::Get_limit_max();
 		$limit = Get_functions::Get_limit($limit_max, $page);
-		$data = DB::Select($column, $table, $condition.$conditionGroupBy.$conditionOrderBy." limit {$limit}, {$limit_max}");
+		$data = DB::Select($column, $table, $condition.$conditionGroupBy.$conditionOrderBy." limit {$limit}, {$limit_max}",true);
 
         $dataCount = DB::Select("count(v.id) as CNT", $table, $condition.$conditionGroupBy);
         $data[0]['count'] = count($dataCount);

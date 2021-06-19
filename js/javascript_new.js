@@ -507,6 +507,18 @@ function countValueList(list,e) {
     }
 }
 
+
+function mainDistCheck(dist) {
+    $("#main_subdist"+dist+" input:checkbox").click();
+    if ($('input#main_dist'+dist).is(':checked')) {
+        $("#main_subdist" + dist + " input:checkbox").prop('checked', false);
+
+        $('input#main_dist'+dist).prop('checked', false);
+    }else{
+        $("#main_subdist"+dist+" input:checkbox").prop('checked', true);
+        $('input#main_dist'+dist).prop('checked', true);
+    }
+}
 function countDis(e) {
 	var length = $(".district_list input:checkbox:checked").length;
 	$("input[name=dis]").val("");
@@ -1426,7 +1438,26 @@ $(document).ready(function() {
 		loginShow();
 	});
 
-	//показ выбора районов
+    //показ выбора районов
+    $(document).on("click", "a[id=subdist]", function(){
+        if($("div.address_modal").css("display") == "none"){
+            $("div.address_modal").slideDown();
+        }else{
+            $("div.address_modal").slideUp();
+        }
+    });
+    //
+    // //показ выбора районов
+    // $(document).on("click", "a[id=subdist]", function(){
+    //     if($("div.subdist_modal").css("display") == "none"){
+    //         $("div.subdist_modal").slideDown();
+    //     }else{
+    //         $("div.subdist_modal").slideUp();
+    //     }
+    // });
+
+
+    //показ выбора районов
     $(document).on("click", "input[name=dis]", function(){
         if($("div.district_list").css("display") == "none"){
             $("div.district_list").slideDown();

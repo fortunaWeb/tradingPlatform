@@ -2439,13 +2439,13 @@ Class Helper
                 } else if (preg_match('/wash/', $k) && $v != "") {
                     $wash .= "{$v}||";
 
-                } else if (ereg('water', $k) && $v != "") {
+                } else if (preg_match('/water/', $k) && $v != "") {
                     $water .= "{$v}||";
 
-                } else if (ereg('heating', $k) && $v != "") {
+                } else if (preg_match('/heating/', $k) && $v != "") {
                     $heating .= "{$v}||";
 
-                } else if (ereg('garage', $k) && $v != "") {
+                } else if (preg_match('/garage/', $k) && $v != "") {
                     $garage .= "{$v}||";
 
                 } else if (ereg('wc', $k) && $v != "") {
@@ -2457,6 +2457,8 @@ Class Helper
                 } else if (ereg('dis', $k) && $v != "") {
                     $dis .= "{$v}||";
 
+                }else if (preg_match('/dst/', $k) && $v != "") {
+                    continue;
                 } else if (ereg('street', $k) && $v != "") {
                     $street .= "{$v}||";
                 } else if (ereg('from', $k) && $sq == 0) {

@@ -695,6 +695,31 @@ div#user_id >button{
 	 text-align: left;
  }
 
+.address_modal{
+	min-width:500px;
+	z-index: 99;
+	position: absolute;
+	padding: 3px 7px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	background-color: #fff;
+	display: none;
+	box-sizing: content-box;
+	-webkit-box-sizing: content-box;
+}
+.subdist_modal{
+	min-width:50px;
+	z-index: 99;
+	position: absolute;
+	padding: 3px 7px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	background-color: #fff;
+	display: none;
+	box-sizing: content-box;
+	-webkit-box-sizing: content-box;
+}
+
 	div.street_list, div.district_list, div.origin_list, div.planning_list,  div.subdistrict_list_to_add, div.district_list_to_add, div.residents_list, div.an_list, div.live_point_list,
 	div.garage_list, div.wc_list, div.wash_machine_list, div.heating_list, div.water_list, div.wash_list, div.house_type_list
 	{
