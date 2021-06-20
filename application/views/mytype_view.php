@@ -117,7 +117,7 @@
 						$modalDialogText = "Статус ВСЕХ вариантов будет изменён на «Не гарантирую актуальность варианта, выясняю это в момент обращения»! ";
 					}
 					?>
-					<button type="button" onclick="VarExtend('checked','<?=$modalDialogText?>')" 
+					<button type="button" onclick="VarExtend('checked','<?=$modalDialogText?>')"
 						style="display:none; <?=$_SESSION['mobile']?'background-color:red':''?>" class="btn btn-default btn-xs extend">Продлить</button>
 				</div>
 			<?

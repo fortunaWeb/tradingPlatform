@@ -509,14 +509,11 @@ function countValueList(list,e) {
 
 
 function mainDistCheck(dist) {
-    $("#main_subdist"+dist+" input:checkbox").click();
+    // $("#main_subdist"+dist+" input:checkbox").click();
     if ($('input#main_dist'+dist).is(':checked')) {
-        $("#main_subdist" + dist + " input:checkbox").prop('checked', false);
-
-        $('input#main_dist'+dist).prop('checked', false);
-    }else{
         $("#main_subdist"+dist+" input:checkbox").prop('checked', true);
-        $('input#main_dist'+dist).prop('checked', true);
+    }else{
+        $("#main_subdist" + dist + " input:checkbox").prop('checked', false);
     }
 }
 function countDis(e) {
@@ -1439,13 +1436,30 @@ $(document).ready(function() {
 	});
 
     //показ выбора районов
-    $(document).on("click", "a[id=subdist]", function(){
+    $(document).on("click", "input[id=subdist]", function(){
         if($("div.address_modal").css("display") == "none"){
             $("div.address_modal").slideDown();
         }else{
             $("div.address_modal").slideUp();
         }
     });
+    $(document).on("click", "label[id=subdist_complete]", function(){
+        if($("div.address_modal").css("display") == "none"){
+            $("div.address_modal").slideDown();
+        }else{
+            $("div.address_modal").slideUp();
+        }
+    });
+    $(document).on("click", "label[id=subdist_clear]", function(){
+
+        for(dist=1; dist<5; dist++){
+            $('input#main_dist'+dist).prop('checked', false);
+            $("#main_subdist" + dist + " input:checkbox").prop('checked', false);
+        }
+
+    });
+
+
     //
     // //показ выбора районов
     // $(document).on("click", "a[id=subdist]", function(){
@@ -1759,6 +1773,7 @@ function addToFavorites(user_id, var_id)
 
 function removeFromFavorites(user_id, var_id){
 	//if(confirm("Убрать вариант из числа избранных?")){
+    //}
 		var favoritStr = $(".product[data-id="+var_id+"] input[data-name=favorit]").val(),
 			data = 'var_id=' + var_id + "&favorit_str="+ favoritStr,
 			count = parseInt($("#favorites-count").text().match(/\d/));
@@ -1789,12 +1804,12 @@ function removeFromFavorites(user_id, var_id){
 					$("[data-id="+var_id+"]").slideUp();
 				}
 			}
-		});		
-	//}
+		});
 }
 
 function VarExtend(id, txt)
 {
+
 	var dateLastEditArr,
 		dateLastEdit,
 		dateArr,
@@ -1808,18 +1823,19 @@ function VarExtend(id, txt)
 	}
 
 	if(id != ""){
-		alertify.confirm(txt, function(result){
-			if (result) {
-				jQuery.ajax({
-					type: 'POST',
-					url: '?task=profile&action=var_extend', 
-					data: 'var_ids=' + id,
-					success: function() {
-						window.location.reload();
-					}
-				});	
-			}	
-		})	
+
+        jQuery.ajax({
+            type: 'POST',
+            url: '?task=profile&action=var_extend',
+            data: 'var_ids=' + id,
+            success: function() {
+                window.location.reload();
+            }
+        });
+        // alertify.confirm(txt, function(result){
+		// 	if (result) {
+		// 	}
+		// })
 	}else{
 		alertify.alert("Нет вариантов для обновления! Обновлять варианты можно 1 раз в час.");
 		$(".products-list :checkbox").prop("checked", false);
@@ -2432,6 +2448,15 @@ function HideContacts(obj){
 		
 	}
 }	
+
+function fullPriceClick(obj)
+{
+    if (!$('input#full_price').is(':checked')) {
+        $("input#full_price  input:checkbox").prop('checked', true);
+    }else{
+        $("input#full_price  input:checkbox").prop('checked', false);
+	}
+}
 
 
 /*скачка фото со старой фортуны*/

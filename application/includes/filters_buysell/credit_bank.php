@@ -4,8 +4,8 @@ $credit_bank = Helper::FilterVal('credit_bank');
 ?>
 <div class="col-xs-2 deployed">
     <div class="input-group interval xm">
-        <label class="signature">Ремонт</label>
-        <select  class="form-control" name="credit_bank" id="credit_bank">
+        <label class="signature"> Ипотека</label>
+        <select  class="form-control" name="credit_bank" id="credit_bank" style="border-radius: 4px; ">
             <option value="">Без ипотеки</option>
             <option value="SBER" <?=$credit_bank=='SBER'?"selected":''?> >
                 СБЕР

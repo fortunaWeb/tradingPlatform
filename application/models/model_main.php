@@ -15,7 +15,7 @@ class Model_Main extends Model
 	    ap_view_price, in_black_list, review, residents, wc_type, heating, wash, copyright,
 	    park, water, sewage, torg, warning, metro_name, distance_to_metro, prolong_garant, last_call_date, last_call_date_ts,
 	    wall_type, obmen, ipoteka, chist_prod, developer, construct_y, kvartal,own_type,y_done, 
-	    v.keys, v.sleeping_area, full_price, app_status, app_type,repair,credit_bank";
+	    v.keys, v.sleeping_area, full_price, app_status, app_type,repair,credit_bank, land_status";
 	
 	public function get_data()
 	{

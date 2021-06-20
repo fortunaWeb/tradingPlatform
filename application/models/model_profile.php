@@ -57,7 +57,8 @@ class Model_Profile extends Model
             wc_type, heating, wash, water, sewage, torg, prolong_garant, last_call_date, last_call_date_ts, obmen, ipoteka, chist_prod,
             obmen, ipoteka, chist_prod, developer, construct_y, kvartal,own_type, y_done,wall_type, 
             DATE_FORMAT(DATE_ADD(`date_last_edit`, INTERVAL -1 hour),'%d/%m/%Y %H:%i') as `date_last_edit_format`, `park`,
-            DATE_FORMAT(`date_added`,'%d/%m/%Y %H:%i') as `date_added_format`, re_var.keys, sleeping_area";
+            DATE_FORMAT(`date_added`,'%d/%m/%Y %H:%i') as `date_added_format`, re_var.keys, sleeping_area, 
+             full_price, app_status, app_type,repair,credit_bank, land_status";
 
 		$tableVars = "re_sample_var as samples
 		   				INNER JOIN `re_var`on samples.var_id = re_var.id  
@@ -109,7 +110,8 @@ class Model_Profile extends Model
 		   wc_type, heating, wash, water, sewage, torg, prolong_garant, last_call_date, last_call_date_ts, obmen, ipoteka, chist_prod,
 		   obmen, ipoteka, chist_prod, developer, construct_y, kvartal,own_type, y_done,wall_type, 
 		   DATE_FORMAT(DATE_ADD(`date_last_edit`, INTERVAL -1 hour),'%d/%m/%Y %H:%i') as `date_last_edit_format`, `park`,
-		   DATE_FORMAT(`date_added`,'%d/%m/%Y %H:%i') as `date_added_format`, re_var.keys, sleeping_area";
+		   DATE_FORMAT(`date_added`,'%d/%m/%Y %H:%i') as `date_added_format`, re_var.keys, sleeping_area, 
+		    full_price, app_status, app_type,repair,credit_bank, land_status";
 
         $table = "`re_var` INNER JOIN re_user ON re_var.user_id = re_user.user_id 
                     INNER JOIN re_people ON re_user.people_id = re_people.id 
@@ -147,7 +149,8 @@ class Model_Profile extends Model
             }else {
                 $condition_var .= " AND copyright = 0";
             }
-							
+
+            $dis = "";
 			foreach($_POST as $k => $v){
 				if(!ereg("Выбрано", $v) && $k!="task" && $k!="action" && $k != 'hidden_text'&& $k != 'without_cont'
 					&& $k!="active" && $k!="page" && $v!="all" && $k!="res" && $k!="order" && $k!='limit'
@@ -170,11 +173,12 @@ class Model_Profile extends Model
 					}else if(ereg('price', $k)){
 						if($v!=""){$condition_var.=" AND ".str_replace(' ', '', $v).")";}
 						else{$condition_var.=" AND 999999999)";}
-					}else if(ereg('dis', $k) && $d==0){
+					}else if (preg_match('/dst/', $k) && $v != "") {
+                        continue;
+                    }else if (preg_match('/dis/', $k) && $v != "") {
+                        $dis .= "{$v}||";
 
-					    $disList[$k] = $v;
-
-					}else if(ereg('street', $k) && $s==0){
+                    }else if(ereg('street', $k) && $s==0){
 						if ($d != 0){$condition_var.=")";$d=0;}
 						if($v!=""){$condition_var.=" AND (`street`='".$v."'"; $s++;}
 					}else if(ereg('street', $k)){
@@ -186,19 +190,8 @@ class Model_Profile extends Model
 				}
 			}
 
-			if(!empty($disList)){
-                $disNames  = ' ';
-                foreach ($disList as $dis) {
-                    $disNames .= " `district` = '$dis' OR";
-                }
-                $disCond = '';
-                foreach ( DB::Select('id', 'sub_districts', substr($disNames, 0, -2)) as $subId) {
-                    $disCond .= "'{$subId['id']}',";
-                }
-                if(!empty($disCond )){
-                    $condition_var  .=  " AND `dis` IN (" .substr($disCond, 0, -1).')';
-                }
-            }
+
+             $condition_var .= $dis != "" ? Helper::MultiCondition("dis='" . $dis, "' OR dis='") : '';
 
             if(Helper::FilterVal('description')){
                 $condition_var .= " AND text LIKE  '%".Helper::FilterVal('description')."%'";

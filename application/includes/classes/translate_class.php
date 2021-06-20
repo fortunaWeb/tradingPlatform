@@ -101,21 +101,21 @@ Class Translate
 		return $date;
 	}	
 	
-	static function Estate_type($topic, $parent){	
+	static function Estate_type($topic, $parent){
 		if($topic == 1 || $topic == 3)
 		{
 			$topic = "Аренда";
 		}else{
 			$topic = "Продажа";
 		}
-			
+
 		switch($parent) {
 			case '1':
 				$parent = "Квартиры";
 				break;
 			case '2':
 				$parent = "Новостройки";
-				break;		
+				break;
 			case '3':
 				$parent = "Дома";
 				break;
@@ -133,8 +133,11 @@ Class Translate
 				break;			
 			case '18':
 				$parent = "Комната";
-				break;	
-			case 'all':
+				break;
+            case '8':
+                $parent = "ЖП";
+                break;
+            case 'all':
 				$parent = "Все";
 				break;				
 		}
@@ -512,6 +515,59 @@ Class Translate
 		return "<span style='color: #476bc6;font-size: 14px;font-weight: bold;'>".self::getTopicNameValue($topic_id).": </span>";
 	}
 
+    static function landStatusMapping($value)
+    {
+        switch ($value){
+            case 'rent':
+                $landStatus = "Аренда";
+                break;
+            case 'own':
+                $landStatus  = 'Собственность';
+            default :
+                $landStatus  = "";
+                break;
+        }
+        return $landStatus;
+    }
+
+
+	static function repairMapping($value)
+    {
+
+        switch ($value){
+            case 'CLEAR':
+                $repair = "Чистовой";
+                break;
+            case 'ROUGH':
+                $repair = "Черновой";
+                break;
+            case 'RMT':
+                $repair = "РМТ";
+                break;
+            default :
+                $repair = "";
+                break;
+        }
+        return $repair;
+    }
+	static function creditBankMapping($value)
+    {
+        switch ($value){
+            case 'SBER':
+                $credit_bank = "Сбер";
+                break;
+            case 'VTB':
+                $credit_bank = "ВТБ";
+                break;
+            case 'OTHER':
+                $credit_bank = "остальные";
+                break;
+            default :
+                $credit_bank = "";
+                break;
+        }
+        return $credit_bank;
+    }
 
 	static function getTopicNameValue($topic_id){
 		if(empty($topic_id))return '';
@@ -664,7 +720,21 @@ Class Translate
 
 		$actionGet = isset($_GET['action']) ? $_GET['action'] : 'index';
 
-		$appType = $app_type=='flat'?'кв.':'ап.';
+		switch ($app_type){
+            case 'flat':
+                $appType = 'кв.';
+                break;
+
+            case 'ls':
+                $appType = 'жп.';
+                break;
+            case 'appartment':
+                $appType = 'ап.';
+                break;
+            default:
+                $appType = 'ап.';
+                break;
+        }
 
 		$topicName = self::getTopicName($topic_id);
 		$planningAbbr = self::planingAbbr($planning,  $actionGet);

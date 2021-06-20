@@ -83,73 +83,34 @@ for ($j=0; $j<$arr_num ; ++$j) {
         <table style='width: 100%;'>
             <tr>
                 <td align="left" style='width: 4%;vertical-align: top;line-height: 0.8;'>
-                    <p><font size="2" data-id="last-edit">
+                    <p style = 'margin: 0 0 2px;'><font size="2" data-id="last-edit">
                     <?=date("d/m", strtotime($data[$j]['date_last_edit'])); ?>
                         </font>
-                    <p><font size="2" data-id="last-edit">
+                    <p style = 'margin: 0 0 10px;'><font size="2" data-id="last-edit">
                             <?=date("H:i", strtotime($data[$j]['date_last_edit'])); ?>
                         </font>
 
-                    <?php
-                    if(!$ngs){
-                        ?>
-                        <div style="display: inline-block;float:left;">
+
+                        <div style="float: left;width: 100%;">
                             <?php
                             if(isset($imgUrl)){?>
                                 <a title="есть фото" class="fancybox-thumbs pull-left" href="<?=$imgUrl;?>"
-                                   data-fancybox-group="msg<?=$data[$j]['id']?>" style="margin-bottom: -8px;margin-top: 15px;">
+                                   data-fancybox-group="msg<?=$data[$j]['id']?>" style="margin-bottom: 0px;margin-top: 0px;">
                                     <img class="media-object" src="images/zenit1.png" style="padding: 2px; border: 1px solid silver;">
                                 </a>
                                 <?php
                             }?>
                         </div>
-                    <?php }
-                    if (Helper::FilterVal("action") == "mytype" && Helper::FilterVal("active") == 1
-                        && $company_var && Helper::FilterVal('copyright') != 1)
-                        echo "<input type='checkbox' onChange='showButtons($(this))' data-id='{$data[$j]['id']}' style='margin: 10px 0;'>"; ?>
                     <br/>
                     <?php
-                    if ($data[$j]['status'] == 3) {
-                        echo "<img style = '";
-                        echo $getTopicId == 3 ? 'display:none;' : '';
-                        echo "' title='Гарантия что объекта нет в интернете на прямую от собственника' width='20px' style = 'margin-left: 5px;' src='images/icon/vip.jpg'><br/>";
-                    }
-                    if (isset($imgUrl) && $ngs) {
+                    if (Helper::FilterVal("action") == "mytype" && Helper::FilterVal("active") == 1
+                        && $company_var && Helper::FilterVal('copyright') != 1) {
                         ?>
-                        <a title="есть фото" class="fancybox-thumbs pull-left" href="<?= $imgUrl; ?>"
-                           data-fancybox-group="msg<?= $data[$j]['id'] ?>"
-                           data-type='<?= $ngs ? 'pri' : '' ?>' style="margin-bottom: -8px;">
-                            <img class="media-object" src="images/zenit1.png"
-                                 style="padding: 2px; border: 1px solid silver;">
-
-                        </a>
-                        <br/>
-                        <br/>
-                        <?php
-                    }
-                    if ($_SESSION['email_work'] != NULL && $_SESSION['email_pass'] != NULL) {
-                        ?>
-
-                        <div class="send-email-form hidden">
-                            <div class="col-xs-4 deployed" style='margin-top: 20px;'>
-                                <label class="signature">Отправить клиенту</label>
-                                <input class="form-control" data-name="email_for_favor" placeholder="email"
-                                       onclick="$('.dropdown-menu').has($(this)).show()">
-                            </div>
-                            <div class="col-xs-4 deployed" style="margin-top: 20px;">
-                                <label class="signature">Комментарий(можно редактировать)</label>
-                                <textarea class="form-control" rows="7" data-name="comment"
-                                          placeholder="текст комментария"></textarea>
-                            </div>
-                            <div class="col-xs-2 deployed">
-                                <button type="button" onclick="SendVarToEmail($(this), <?= $data[$j]['id']; ?>)"
-                                        style="" class="btn btn-success btn-xs ">Отправить
-                                </button>
-                            </div>
+                        <div style="float: left;width: 100%;">
+                            <input type='checkbox' onChange='showButtons($(this))' data-id='{$data[$j]['id']}' style='margin: 10px 0;'>
                         </div>
-                        <?php
-                    }
-                    ?>
+                        <?php }
+                        ?>
 
                 </td>
                 <td>
@@ -272,20 +233,14 @@ for ($j=0; $j<$arr_num ; ++$j) {
 <!--                    --><?//=($data[$j]['own_type'])?"<font class='retro-gray'>Форма собственности: </font><font class='retro-green' data-name='sq'>{$data[$j]['own_type']}</font>; ":''?>
 <!--                    --><?//=($data[$j]['construct_y'])?"<font class='retro-gray'>Год постройки: </font><font class='retro-green' data-name='sq'>{$data[$j]['y_done']}</font>; ":''?>
 <!--                    --><?//=($data[$j]['developer'])?"<font class='retro-gray'>Застройщик: </font><font class='retro-green' data-name='sq'>{$data[$j]['developer']}</font>; ":''?>
-                    <?=($data[$j]['wc_type'])?"<font class='retro-gray'>Санузел: </font><font class='retro-green' data-name='sq'>{$data[$j]['wc_type']}</font>, ":''?>
-                    <?=($data[$j]['repair'])?"<font class='retro-gray'>Ремонт: </font><font class='retro-green' data-name='sq'>{$data[$j]['repair']}</font>, ":''?>
-                    <?=($data[$j]['credit_bank'])?"<font class='retro-gray'>Ипотека: </font><font class='retro-green' data-name='sq'>{$data[$j]['credit_bank']}</font>, ":''?>
+                    <?=($data[$j]['wc_type'])?"<font class='retro-gray'>Санузел: </font><font class='retro-green' data-name='wc'>{$data[$j]['wc_type']}</font>, ":''?>
+                    <?=!empty($data[$j]['repair'])?"<font class='retro-gray'>Ремонт: </font><font class='retro-green' data-name='repair'>
+                        ".Translate::repairMapping($data[$j]['repair'])."</font>, ":''?>
+                    <?=!empty($data[$j]['credit_bank'])?"<font class='retro-gray'>Ипотека: </font><font class='retro-green' data-name='credit_bank'>
+                        ".Translate::creditBankMapping($data[$j]['credit_bank'])."</font>, ":''?>
                     <?=($data[$j]['full_price'])?"<font class='retro-gray'>Договор: </font><font class='retro-green' data-name='sq'>Вся суммма</font> ":''?>
-
-<!--                    <div style = "--><?//=$getTopicId==3?'display:none;':''?><!--">-->
-<!--                        <font style='color: #476BC6;font-size: 16px;'>Удобства: </font>-->
-<!---->
-<!--                        --><?//=($data[$j]['heating'])?"<font class='retro-gray'> Отопление: </font><font class='retro-green' data-name='sq'>{$data[$j]['heating']}</font>; ":''?>
-<!--                        --><?//=($data[$j]['water'])?"<font class='retro-gray'> Вода: </font><font class='retro-green' data-name='sq'>{$data[$j]['water']}</font>; ":''?>
-<!--                        --><?//=($data[$j]['sewage'])?"<font class='retro-gray'> Cлив: </font><font class='retro-green' data-name='sq'>{$data[$j]['sewage']}</font>; ":''?>
-<!--                        --><?//=($data[$j]['wash'])?"<font class='retro-gray'> Мыться: </font><font class='retro-green' data-name='sq'>{$data[$j]['wash']}</font>; ":''?>
-<!---->
-<!--                    </div>-->
+                    <?=!empty($data[$j]['land_status'])?"<font class='retro-gray'>Статус земли: </font><font class='retro-green' data-name='sq'>
+                        ".Translate::landStatusMapping($data[$j]['land_status'])."</font> ":''?>
                     <div style = 'width: 85%'>
                         <font style='color: #476BC6;font-size: 16px;'>
                             <?=!empty($data[$j]['text'])?"Описание:
@@ -306,16 +261,16 @@ for ($j=0; $j<$arr_num ; ++$j) {
 
                         <?}else{ ?>
                             <font class='retro-gray'>тел: </font>
-                            <font onclick="$(this).hide(); $(this).next().show();" data-name='contacts'
+                            <font class='retro-black' onclick="$(this).hide(); $(this).next().show();" data-name='contacts'
                                 <?=(!$contacts ? 'style="display:none;"' : 'style="display:inline-block;"')?>><?=$data[$j]['phone'];?></font>
                             <font onclick="$(this).hide(); $(this).prev().show();"data-name='contacts-hide' <?=($contacts ? 'style="display:none;"' : 'style="display:inline-block;"')?>>***********</font>
                             <?$owner = ( $_SESSION["user"] == $data[$j]['user_id'] || (isset($data[$j]['user_parent']) && $_SESSION["user"] == $data[$j]['user_parent']));?>
 
                             <font class='retro-gray'> имя : </font>
-                            <font <?if($owner) echo "onClick='EmployeeList(".$data[$j]['id'].",\"".$data[$j]['company_name']."\",".$data[$j]['user_id'].")' "; unset($owner);?> data-people-id='<?=$data[$j]['people_id'];?>' data-name='people'>
+                            <font class='retro-black' <?if($owner) echo "onClick='EmployeeList(".$data[$j]['id'].",\"".$data[$j]['company_name']."\",".$data[$j]['user_id'].")' "; unset($owner);?> data-people-id='<?=$data[$j]['people_id'];?>' data-name='people'>
                                 <?=$data[$j]['name'];?>
                             </font>
-                            <font class='retro-gray' > АН : </font><?=$data[$j]['company_name'];?>
+                            <font   class='retro-gray' > АН : </font> <font class='retro-black'><?=$data[$j]['company_name'];?></font>
                             <?=($data[$j]['premium'] == 1) ? "<img title='статус-премиум' width='14px' style='vertical-align: initial;float: right;    margin: 3px 3px;' src='images/icon/zv.gif'>" : ""?>
 
                         <?php

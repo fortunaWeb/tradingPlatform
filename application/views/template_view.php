@@ -13,7 +13,8 @@
 		 *	Обновление времени сессии
 		 */
 		Helper::Session_date_update();/**/
-		list($topic, $parent) =  explode(" ", Translate::Estate_type($topic_id, $parent_id));?>	
+		list($topic, $parent) =  explode(" ", Translate::Estate_type($topic_id, $parent_id));
+		?>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />

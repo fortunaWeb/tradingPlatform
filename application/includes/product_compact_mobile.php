@@ -476,7 +476,7 @@ for ($j=0; $j<$arr_num ; ++$j) {
 								if($contacts){?>
 									<br/>
 									<font style="color: #476bc6;font-size: 14px;font-weight: bold;">
-									тел:</font>
+									8тел:</font>
 									<font data-name='contacts'>
 										<a href="tel:<?=$data[$j]['contact_tel']; ?>" ><?=$data[$j]['contact_tel']; ?></a>
 									</font>

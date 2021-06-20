@@ -1,4 +1,4 @@
-<?if ($parent == "Квартиры" || $parent == "Дома" || $parent == "Новостройки"){?>
+<?if ($parent == "Квартиры" || $parent == "Дома" || $parent == "ЖП" || $parent == "Новостройки"){?>
 	<div class="col-xs-2 deployed">
 		<label class="signature">Площади, м<sup>2</sup></label>
 		<div class="input-group interval">			

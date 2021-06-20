@@ -1,6 +1,7 @@
 ﻿
 <?php
 $parent_id = Helper::FilterVal('parent_id');
+/*
 if(Helper::FilterVal('action') != 'mytype') {
     ?>
     <div class="btn-group medium" data-toggle="buttons">
@@ -21,6 +22,7 @@ if(Helper::FilterVal('action') != 'mytype') {
     </div>
 <?php
 }
+*/
 ?>
 <div class="btn-group medium" data-toggle="buttons" style="margin-left: 1%;min-width: 70px;">
     <label onClick="HideContacts($(this))" class="btn btn-default <?php if(Helper::FilterVal('without_cont') == 1) echo "active"; ?>">
@@ -33,8 +35,13 @@ if(Helper::FilterVal('action') != 'mytype') {
     </label>
 </div>
 
-<div class="btn-group medium" data-toggle="buttons" style="margin-left: 5%;min-width: 250px;">
+<div class="btn-group medium" data-toggle="buttons" style="margin-left: 1%;min-width: 70px;">
+    <label class="btn btn-default <?=Helper::FilterVal('full_price') == 1?"active":''?>"
+           id = 'full_price_button'   onClick = 'fullPriceClick($(this))' >
+        <input type="checkbox" id="full_price"  name="full_price" value="1" <?=Helper::FilterVal('full_price') == 1? "checked":''?>> Полная сумма в договоре
+    </label>
+</div>
+
     <?php
   include "application/includes/filters_buysell/price.php";
     ?>
-</div>

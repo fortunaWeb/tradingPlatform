@@ -185,7 +185,7 @@ if(
 						</div>
 						<div style="font-size: 16px;">
 							<?if($contacts){?>
-								<font style="color: #476bc6;font-size: 14px;font-weight: bold;">тел:</font>
+								<font style="color: #476bc6;font-size: 14px;font-weight: bold;">6тел:</font>
 								 <font data-name='contacts'>
 										<a href="tel:<?=$data[$j]['phone']; ?>" ><?=$data[$j]['phone']; ?></a>
 								 	</font>

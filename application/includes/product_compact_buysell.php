@@ -362,12 +362,12 @@ for ($j=0; $j<$arr_num ; ++$j) {
 							<font style="color: #476bc6;font-size: 14px;font-weight: bold;">Имя : </font>
 									<font data-name='contacts'><?=$data[$j]['contact_name'];?></font>
 							<?if($contacts){?>
-								<font style="color: #476bc6;font-size: 14px;font-weight: bold;">тел: </font>
+								<font style="color: #476bc6;font-size: 14px;font-weight: bold;">4тел: </font>
 								<font data-name='contacts'><?=$data[$j]['contact_tel']; ?></font>
 							<?}?>
 
 						<?}else{ ?>
-							<font class='retro-gray'>тел: </font> 
+							<font class='retro-gray'>5тел: </font>
 							<font onclick="$(this).hide(); $(this).next().show();" data-name='contacts' 
 								<?=(!$contacts ? 'style="display:none;"' : 'style="display:inline-block;"')?>><?=$data[$j]['phone'];?></font>
 							<font onclick="$(this).hide(); $(this).prev().show();"data-name='contacts-hide' <?=($contacts ? 'style="display:none;"' : 'style="display:inline-block;"')?>>***********</font>

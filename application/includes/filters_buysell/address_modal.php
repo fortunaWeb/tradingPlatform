@@ -2,21 +2,14 @@
 
 ?>
 <div class="col-xs-1 deployed" style = 'margin-right: <?=$_SESSION['mobile']==1?"auto;'":"auto;"?>'>
-    <label class="signature"><a id = 'subdist' style = 'font-weight: bold;'>Районы</a></label>
-    <div class="address_modal" style = 'min-width:640px;z-index: 99;position: absolute;padding: 3px 7px;border: 1px solid #ccc;border-radius: 4px;
-                background-color: #fff;
-                display: none;
-                box-sizing: content-box;
-                -webkit-box-sizing: content-box;'
-    >
-
-        <div class="subdist_modal" style = 'min-width:640px;z-index: 99;
-                background-color: #fff;display: block;box-sizing: content-box;-webkit-box-sizing: content-box;'>
+    <input type="button"  id = 'subdist'  value="Районы">
+    <div class="address_modal" style = '
+    min-width:665px;z-index:99; position: absolute;padding: 3px 7px;border: 1px solid #ccc;
+    border-radius: 4px;background-color: #fff; display: none;box-sizing: content-box;-webkit-box-sizing: content-box;
+    height:480px; overflow-y:auto '>
             <div   class="col-xs-2 deployed"   style = 'background-color: #F7E5B1'>
-                <label class="checkbox-inline"   onclick='mainDistCheck(1)'>
-                    <input type="checkbox" hidden id = 'main_dist1'  name = 'main_dst1' value="Адлерский" >
-                    <a style = 'font-weight: bold;'>Адлерский</a>
-                </label>
+                    <input type="checkbox" onchange='mainDistCheck(1)'  id = 'main_dist1'  name = 'main_dst1' value="Адлерский" >
+                    Адлерский
                 <div id = 'main_subdist1'>
                     <label class="checkbox-inline <?=Helper::FilterVal('subdist1')? 'active':''?>" style = 'margin-left: 10px;'>
                         <input type="checkbox"  name="subdist1" value="1" <?=(Helper::FilterVal('subdist1'))?'checked="checked"':''?>>Адлер Центр
@@ -100,9 +93,8 @@
                 </div>
             </div>
             <div class="col-xs-2 deployed"  style = 'background-color: #C6E486'>
-                <label class="checkbox-inline "  onclick='mainDistCheck(2)'>
-                    <input type="checkbox"   hidden id = 'main_dist2' name = 'main_dst2' value="Лазаревский" ><a style = 'font-weight: bold;'>Лазаревский</a>
-                </label>
+                    <input type="checkbox"     onChange='mainDistCheck(2)' id = 'main_dist2' name = 'main_dst2' value="Лазаревский" >
+                    Лазаревский
                 <div id = 'main_subdist2'>
                     <label class="checkbox-inline <?=Helper::FilterVal('subdist62')? 'active':''?>" style = 'margin-left: 10px;'>
                         <input type="checkbox"  name="subdist62" value="62" <?=(Helper::FilterVal('subdist62'))?'checked="checked"':''?>>Аше
@@ -199,11 +191,9 @@
                     </label>
                 </div>
             </div>
-
             <div   class="col-xs-2 deployed"   style = 'background-color: #8B5085'>
-                <label class="checkbox-inline"  onclick='mainDistCheck(3)' >
-                    <input type="checkbox"  hidden   id = 'main_dist3'   name="main_dst3" value="Хостинский"><a style = 'font-weight: bold;'>Хостинский</a>
-                </label>
+                <input type="checkbox"     onChange='mainDistCheck(3)' id = 'main_dist3' name = 'main_dst3' value="Хостинский" >
+                Хостинский
                 <div id = 'main_subdist3'>
                     <label class="checkbox-inline <?=Helper::FilterVal('subdist38')? 'active':''?>" style = 'margin-left: 10px;'>
                         <input type="checkbox"  name="subdist38" value="38" <?=(Helper::FilterVal('subdist38'))?'checked="checked"':''?>>Бытха
@@ -280,11 +270,9 @@
 
                 </div>
             </div>
-
             <div   class="col-xs-2 deployed"   style = 'background-color: #71B7AE'>
-                <label class="checkbox-inline"  onclick='mainDistCheck(4)' >
-                    <input type="checkbox"    hidden id = 'main_dist4'   name="main_dst4" value="Центральный"><a style = 'font-weight: bold;'>Центральный</a>
-                </label>
+                <input type="checkbox"     onChange='mainDistCheck(4)' id = 'main_dist4' name = 'main_dst4' value="Центральный" >
+                Центральный
                 <div id = 'main_subdist4'>
                     <label class="checkbox-inline <?=Helper::FilterVal('subdist27')? 'active':''?>" style = 'margin-left: 10px;'>
                         <input type="checkbox"  name="subdist27" value="27" <?=(Helper::FilterVal('subdist27'))?'checked="checked"':''?>>Ареда
@@ -321,6 +309,15 @@
                     </label>
                 </div>
             </div>
+
+        <div class="btn-group medium " style="margin-left: 1%;">
+            <label id = 'subdist_complete' class="btn btn-primary" style = 'border-radius: 4px;margin-right: 10px;'>
+                Готово
+            </label>
+            <label   id = 'subdist_clear' class="btn  btn-danger" style = 'border-radius: 4px;margin-right: 10px;'>
+                Сброс
+            </label>
         </div>
-    </div>
+  </div>
+
 </div>

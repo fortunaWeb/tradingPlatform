@@ -1,5 +1,5 @@
 
-<div class="col-xs-2 deployed">
+<div class="col-xs-2 deployed" style = 'width: 150px'>
     <label class="signature"> Статус:</label>
     <select class="form-control" name="app_status" id="app_status" required>
         <option value=''  >---</option>

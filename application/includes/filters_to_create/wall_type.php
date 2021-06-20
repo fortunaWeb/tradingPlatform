@@ -3,7 +3,7 @@
 	<? $wall_type = $data_res['wall_type']; ?>
 	<select class="form-control" name="wall_type" id="wall_type" required>
 		<option value="">выберите</option>
-        <?if($parent=="Квартиры"){?>
+        <?if($parent=="Квартиры" || $parent=="ЖП"){?>
         <option value="блочный" <?php if($wall_type == 'блочный') echo "selected"; ?>>
             Блочный
         </option>

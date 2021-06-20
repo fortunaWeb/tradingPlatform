@@ -390,6 +390,9 @@ function check_number(obj) {
                 include "application/includes/filters_to_create/appartment_type.php";
                 include "application/includes/filters_to_create/appartment_status.php";
 
+            if($parent == 'ЖП'){
+                include "application/includes/filters_to_create/land_status.php";
+            }
             $constructView = '';
             if($parent != 'Земля' && $parent != ' Коммерческая'){
                 if($data_res['app_status']!='new'){
@@ -423,7 +426,7 @@ function check_number(obj) {
 			<legend class = 'object_desc'>Описание Объекта</legend>
 		</div>
 		<?
-		if($parent == "Квартиры"){
+		if($parent == "Квартиры"  || $parent == "ЖП"){
 			include "application/includes/filters_to_create/rooms_count.php";
 			include "application/includes/filters_to_create/area.php";
 			include "application/includes/filters_to_create/planning.php";
@@ -506,7 +509,6 @@ function check_number(obj) {
 			<?php
 				include "application/includes/filters_to_create/price.php";
                include "application/includes/filters_to_create/additional_terms.php";
-//				include "application/includes/filters_to_create/full_price.php";
 			?>
 		</div>
 		<?=$_SESSION['mobile']?"</div><div class='row'>":""?>

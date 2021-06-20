@@ -94,14 +94,14 @@
 		<?
 	}
         foreach ($samples as $sample) {
-	    $link = urlencode("http://www.kv.fortunasib.ru?task=main&action=index&link={$sample['external_link']}");
+	    $link = urlencode("http://www.an-podborka.ru?task=main&action=index&link={$sample['external_link']}");
 		?>
 		<div class='row products-list samples' data-id='<?=$sample["id"];?>' style='margin-top:5px'>
 			<span style='float:left;margin-right:10px'><?=$sample["sample_name"];?></span>
 			<span style='float:left'>
-				<a href = '<?="http://www.kv.fortunasib.ru?task=main&action=index&link={$sample['external_link']}"?>' target = '_blank'>
+				<a href = '<?="http://www.an-podborka.ru?task=main&action=index&link={$sample['external_link']}"?>' target = '_blank'>
 					Перейти  к просмотру</a>
-				</span>  <br/><?="http://www.kv.fortunasib.ru?task=main&action=index&link={$sample['external_link']}"?>
+				</span>  <br/><?="http://www.an-podborka.ru?task=main&action=index&link={$sample['external_link']}"?>
 			<br/>
 
             <div class="share">

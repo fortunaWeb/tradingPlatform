@@ -1224,7 +1224,8 @@ Class Helper
         }
 
         unset($price);
-        $result = "<font style='color: #476BC6;font-size: 16px;'>цена: </font><span data-name='price'>{$str_price}</span>"
+        $result = "<font style='color: #476BC6;font-size: 16px;'>цена: </font><span data-name='price'>{$str_price}тыс.руб.</span>
+        "
             . $utility_payment;
 
         return $result;

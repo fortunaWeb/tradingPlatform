@@ -165,7 +165,8 @@ class Model_Buysell extends Model
             `image`, `price`, `prepayment`, `deposit`,   `utility_payment`,`ap_view_price`, `torg`,`chist_prod`, `obmen`,
             `ipoteka`, `rent_type`,`link`, `date_added`, `date_last_edit`, `randomName`, `coords`, `metro_coords`,
             `metro_name`,   `distance_to_metro`, `new_house`,`deliv_period`, `residents`,`ap_view_date`, `ap_race_date`, 
-            `status`,`photo`,  `col_date`,  `suspicion`,`sleeping_area`, `keys`, `construct_y`, `copyright`,`owner`';
+            `status`,`photo`,  `col_date`,  `suspicion`,`sleeping_area`, `keys`, `construct_y`, `copyright`,`owner`,
+            `repair`, `credit_bank`, `app_type`, `app_status`, `full_price`, `land_status`';
         $values = "'{$userId}', '1','{$parseVar['group']}','{$parseVar['topic_id']}','{$parseVar['type_id']}','{$parseVar['parent_id']}',
             '{$parseVar['live_point']}','{$parseVar['dis']}','{$parseVar['street']}','{$parseVar['house']}',
             '{$parseVar['orientir']}','{$parseVar['sq_all']}','{$parseVar['sq_live']}','{$parseVar['sq_k']}',
@@ -187,7 +188,10 @@ class Model_Buysell extends Model
             '{$parseVar['deliv_period']}','{$parseVar['residents']}',
             '{$parseVar['ap_view_date']}','{$parseVar['ap_race_date']}','{$parseVar['status']}',
             '{$parseVar['photo']}','{$parseVar['col_date']}','{$parseVar['suspicion']}',
-            '{$parseVar['sleeping_area']}','{$parseVar['keys']}','{$parseVar['construct_y']}','1', '{$varId}'";
+            '{$parseVar['sleeping_area']}','{$parseVar['keys']}','{$parseVar['construct_y']}','1', '{$varId}',
+            '{$parseVar['repair']}', '{$parseVar['credit_bank']}', '{$parseVar['app_type']}', '{$parseVar['app_status']}',
+                '{$parseVar['full_price']}', '{$parseVar['land_status']}'
+            ";
 
         if(!file_exists($dirDist)){
             mkdir($dirDist);

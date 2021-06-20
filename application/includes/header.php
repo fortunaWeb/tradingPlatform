@@ -7,18 +7,18 @@
      			<span class="dropdown left" style="display: block;margin-top: 0px;">
 				<a href="javascript:void(0)" id="dropdownMenu4" data-toggle="dropdown" style="margin: -11px -10px -11px 10px;padding: 13px;" class="left">Меню<span class="caret"></span></a>
 				<ul class="dropdown-menu" aria-labelledby="dropdownMenu4">
-					<?if($_SESSION['parent'] == 0){?>
+					<?php
+                     /*if($_SESSION['parent'] == 0){?>
 						<li><a href="?task=profile&action=order"><font style = 'color: #884535'>  Отправка данных  об оплате</font></a></li>
                         <li><a href="?task=profile&action=services"><font style = 'color: #884535'> Продление доступа</font></a></li>
 						<li><a href="?task=profile&action=user_list">Список сотрудников</a></li>
 						<li><a href="?task=profile&action=tariffs">Оферта</a></li>
-					<?}?>
-					<li><a href="?task=profile&action=rules">Правила</a></li>
+					<?}/**/?>
                 <?php if($_SESSION['login'] == 'admin'){ ?>
                     <li><a href="?task=profile&action=messages">Сообщения от админа</a></li>
                  <?php }?>
 					<li><a href="?task=profile&action=contacts">Контакты администратора</a></li>
-					<li><a href="?task=profile&action=send_message">Написать админу</a></li>
+					<li><a target="_blank" href="https://disk.yandex.ru/d/PFXphoGDoEyAfA">Инструкция по сайту</a></li>
 				</ul>
 			</span>
 
@@ -31,13 +31,7 @@
                     </span>
 				</a>
 				<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-					<li>
-						<a href="<?="?task=main&action=pay_parse&parent_id=1&topic_id=21"?>">Продажа</a>
-						<?php
-                        //echo "?task=buysell&action=parse_buysell&topic_id=2&parent_id=1";
-                        ?>
 
-					</li>
 					<li>
 						<a href="<?echo "?task=login&action=logout";?>">Выход</a>
 					</li>
@@ -64,11 +58,12 @@
 
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
 						<li><a href="?task=profile&action=newvar&topic_id=2&parent_id=1">Квартира</a></li>
+						<li><a href="?task=profile&action=newvar&topic_id=2&parent_id=8">ЖП</a></li>
 						<li><a href="?task=profile&action=newvar&topic_id=2&parent_id=18">Комната</a></li>
-						<li><a href="?task=profile&action=newvar&topic_id=2&parent_id=3">Коттеджи-дома</a></li>
-						<li><a href="?task=profile&action=newvar&topic_id=2&parent_id=6">Гаражи/Парковки</a></li>
-						<li><a href="?task=profile&action=newvar&topic_id=2&parent_id=7">Коммерческая</a></li>
-						<li><a href="?task=profile&action=newvar&topic_id=2&parent_id=5">Земля</a></li>
+<!--						<li><a href="?task=profile&action=newvar&topic_id=2&parent_id=3">Коттеджи-дома</a></li>-->
+<!--						<li><a href="?task=profile&action=newvar&topic_id=2&parent_id=5">Земля</a></li>-->
+<!--						<li><a href="?task=profile&action=newvar&topic_id=2&parent_id=6">Гаражи/Парковки</a></li>-->
+<!--						<li><a href="?task=profile&action=newvar&topic_id=2&parent_id=7">Коммерческая</a></li>-->
 					</ul>
 			</span>
 
@@ -96,12 +91,8 @@
 						<li><a href="?task=profile&action=sample">Подборки</a></li>
 					</ul>
 			</span>
-
-
-            <a href="<?=$link?>" class="right" style="margin: -11px -10px -11px 10px;padding: 13px;">ЛK</a>
             <?php
-                $link = $_SESSION['parent']==0 ? "?task=profile&action=services" : "?task=profile&action=services";
-
+            $link = $_SESSION['parent']==0 ? "?task=profile&action=services" : "?task=profile&action=services";
             $my_obj_topic = isset($_GET['topic_id'])
                 ? $_GET['topic_id']
                 : ($_SESSION["group_topic_id"] == 3

@@ -197,7 +197,7 @@ if(
 						</div>
 						<div style="font-size: 16px;">
 							
-								<font style="color: #476bc6;font-size: 14px;font-weight: bold;">тел: </font><font data-name='contacts'><?=$data[$j]['phone']; ?></font>
+								<font style="color: #476bc6;font-size: 14px;font-weight: bold;">1тел: </font><font data-name='contacts'><?=$data[$j]['phone']; ?></font>
 							
 						</div>
 						<div style="font-size: 12px;color: grey;font-weight: bold;">

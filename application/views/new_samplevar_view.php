@@ -280,7 +280,7 @@ function check_number(obj) {
 
 
 function exit(){
-    var thisWindow = window.open("http://www.kv.fortunasib.ru?task=profile&action=sample_add",'_self');
+    var thisWindow = window.open("http://www.an-podborka.ru/?task=profile&action=sample_add",'_self');
     var exit = confirm("Хотите закрыть страницу?");
     if(exit){
         thisWindow.close();

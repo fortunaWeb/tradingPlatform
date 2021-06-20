@@ -5,7 +5,7 @@ $app_status = Helper::FilterVal('app_status');
 <div class="col-xs-1 deployed">
     <div class="input-group interval xm">
         <label class="signature">Статус</label>
-        <select  class="form-control" name="app_status" id="app_status">
+        <select  class="form-control" name="app_status" id="app_status" style="border-radius: 4px; ">
             <option value="">---</option>
             <option value="new" <?=$app_status  == 'new'?"selected":''?> >
                  Новостройка

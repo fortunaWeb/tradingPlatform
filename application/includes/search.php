@@ -151,19 +151,22 @@ function GeoUpdate(val){
 			<li class="<?=($parent == "Квартиры")?'active':''?>">
 				<a href="<?=$url."&parent_id=1".((isset($topic))? '&topic_id='. $topic_id : '')?>">Квартиры</a>
 			</li>
-			<li class="<?=($parent == "Комната")?'active':''?>">
-				<a href="<?=$url."&parent_id=18".((isset($topic))?'&topic_id='. $topic_id:'')?>">Комнаты</a>
+            <li class="<?=($parent == "Комната")?'active':''?>">
+                <a href="<?=$url."&parent_id=18".((isset($topic))? '&topic_id='. $topic_id : '')?>" >Комнаты</a>
+            </li>
+			<li class="<?=($parent == "ЖП")?'active':''?>">
+                <a href="<?=$url."&parent_id=8".((isset($topic))? '&topic_id='. $topic_id : '')?>" >ЖП</a>
 			</li>
 			<li class="<?=($parent=="Дома")?'active':''?>">
-				<a href="<?=$url."&parent_id=3".((isset($topic))?'&topic_id='. $topic_id:'')?>">Дома</a>
+                <a href="#" style = 'background-color:#efd37b' onclick="alert('Раздел  `Дома` будет доступен в ближайшее время')">Дома</a>
 			</li>
-            <li class="<?=($parent=="Коммерческая")?'active':''?>">
-                <a href="<?=$url."&parent_id=7".((isset($topic))?'&topic_id='. $topic_id:'')?>">Коммерческая</a>
-            </li>
             <li class="<?=($parent=="Земля")?'active':''?>">
-                <a href="<?=$url."&parent_id=5".((isset($topic))?'&topic_id='. $topic_id:'')?>">Земля</a>
+                <a href="#" style = 'background-color:#efd37b' onclick="alert('Раздел  `Земля` будет доступен в ближайшее время')">Земля</a>
             </li>
-		</ul>
+            <li class="<?=($parent=="Коммерческая")?'active':''?>" >
+                <a href="#" style = 'background-color:#efd37b' onclick="alert('Раздел  `Коммерческая` будет доступен в ближайшее время')">Коммерческая</a>
+            </li>
+        </ul>
 	</div>
 
 	 
