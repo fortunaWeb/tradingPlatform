@@ -10,7 +10,7 @@ $credit_bank = Helper::FilterVal('credit_bank');
             <option value="SBER" <?=$credit_bank=='SBER'?"selected":''?> >
                 СБЕР
             </option>
-            <option value="ВТБ" <?=$credit_bank=='ВТБ'?"selected":''?> >
+            <option value="VTB" <?=$credit_bank=='VTB'?"selected":''?> >
                 ВТБ
             </option>
             <option value="OTHER" <?=$credit_bank=='OTHER'?"selected":''?> >

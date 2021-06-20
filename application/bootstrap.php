@@ -1,5 +1,5 @@
 <?php
-ini_set('date.timezone', 'Asia/Novosibirsk');
+ini_set('date.timezone', 'Europe/Moscow');
 ini_set('display_errors', 0);
 ini_set('session.save_path', '/var/www/fortuna/sessions');
 ini_set('session.gc_maxlifetime', 3600000);
